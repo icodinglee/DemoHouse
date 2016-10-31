@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>object　usege</title>
+</head>
+<body>
+  <script type="text/javascript">
+    var str="asdasdafdsfgsad"
+    var obj={};
+    for(var i=0,I=str.length;i<I;i++){
+      var key=str[i];
+      if(!obj[key]){
+        obj[key]=1;
+      }else{
+        obj[key]++
+      }
+    }
+    console.log(obj.a)
+  </script>
+</body>
+</html>

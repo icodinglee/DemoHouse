@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>向服务器上传文件</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript">
+        function submitCookie(){
+          document.cookie="userName=jack";
+          document.cookie="password=123456";
+          axios.post('/index.html', {
+            })
+            .then(function (res) {
+             document.getElementById("res").innerHTML=res.data;
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        }
+    </script>
+</head>
+<body>
+<h1>cookieParser中间件的使用</h1>
+<input type="button" value="提交cookie" onclick="submitCookie();" />
+<div id="res"></div>
+<a href="./test.html">test</a>
+</body>
+</html>

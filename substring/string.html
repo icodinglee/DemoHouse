@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script type="text/javascript">
+
+  var str="password=qwe123qwe;userName=peter66"
+  //先将userName=peter66部分分离出来
+  var RegExp=/userName=[\u4E00-\u9FA5A-Za-z0-9_]+/g
+  var trans=RegExp.exec(str)
+  document.write(trans)
+
+  //第一种方法（截取userName之后的所有字符串内容）
+  document.write(String(trans).substr(9))
+  document.write(String(trans).slice(9))
+  document.write(String(trans).slice(9,14))
+
+  //第二种方法(找到userName, 把它替换为空)
+   var anoRegExp=/userName=(?=[\u4E00-\u9FA5A-Za-z0-9_]+)/g
+   document.write(String(trans).replace(anoRegExp, ""))
+
+   //第三种方法(截取从指定位置开始到最后或某一位置的字符)－－－－document.write(str.substring(3,7))
+   //使用 indexOf() 来定位字符串中某一个指定的字符首次出现的位置
+   var indx=String(trans).indexOf("=")+1
+   document.write(String(trans).substring(indx))
+   document.write(String(trans).substring(indx,indx+5))
+
+   //第四种方法(字符串切割)
+  let arr=String(trans).split("=")
+  console.log(arr[1])
+
+  //第五种方法
+
+  //第六种方法（思考，是否能将password=qwe123qwe;userName=peter66转化为jason）
+  var JSONObject= {
+    "name":"Bill Gates",
+    "street":"Fifth Avenue New York 666",
+    "age":56,
+    "phone":"555 1234567"
+ }
+  console.log(typeof JSONObject)
+  var myarr=str.split(';')
+  console.log(myarr)
+  let wantarr=new Array()
+
+  for(var i in myarr){
+    let thisarr=myarr[i].split('=')
+    wantarr.push(thisarr[0],thisarr[1])
+  }
+  console.log(wantarr)
+  var obj={}
+  for(var i=0,I=wantarr.length;i<I;i=i+2){
+    var key=wantarr[i];
+    obj[key]=wantarr[i+1]
+  }
+  console.log(obj);
+  console.log(obj.userName)
+  </script>
+</body>
+</html>

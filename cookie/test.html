@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="text/javascript">
+  window.onload=function(){
+    console.log(typeof document.cookie)
+    console.log(document.cookie)//正则表达式
+
+    if(document.cookie){
+        var arr=document.cookie.split(";")
+        console.log(arr)
+        var arrs=[]
+        for(var i in arr){
+          let arrt=arr[i].split("=")
+          arrs.push(arrt[0])
+          arrs.push(arrt[1])
+        }
+        for(var t in arrs){
+          if(arrs[t]==="userName"){
+            t++;
+            let userName=arrs[t]
+            document.getElementById("userName").innerHTML=userName;
+          }
+        }
+    }else{
+      document.getElementById("userName").innerHTML="游客";
+    }
+
+    document.getElementById("updatecookie").onclick=function(){
+     document.cookie="peter=better";
+     console.log(document.cookie)
+      window.location.assign('/');
+    }
+  }
+  </script>
+</head>
+<body>
+  <h1><span id="userName"></span>,欢迎您</h1>
+  <a href="index2.html">index2</a>
+  <input type="button" value="updatecookie" id="updatecookie"></input>
+</body>
+</html>
