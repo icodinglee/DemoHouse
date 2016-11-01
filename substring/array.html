@@ -131,6 +131,36 @@ console.log(arr)
 //希尔排序
 //二分插入排序
 
+
+
+//数组去重 回调函数，注意return在哪里 ，记录重复信息
+function fliter(Arry,callBack){
+    Arry.push(Arry[3]);
+    Arry=callBack(Arry);　//回调函数的调用形式
+    return Arry
+}
+function fliter1(Arrys){
+  var arrs=[];
+  var obj={};
+  var len =Arrys.length;
+  for(var i=0;i<len;i++){
+    var v=Arrys[i]
+    if(!obj[v]){
+      obj[v]=1;  //这里记录重复的次数　　重要信息：只有object对象才会有obj["name"]
+      arrs.push(v)
+    }else{
+      obj[v]++
+    }
+  }
+  console.log(obj)  //输出每个数字重复个数的信息
+  console.log(arrs)
+  return arrs
+}
+console.log(fliter(arr,fliter1))　//函数以怎样的方式以变量传入
+
+
+
+
   }
   </script>
 </body>
