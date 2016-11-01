@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>返回数据类型不是json,而是函数，这个比较特殊</title>
+</head>
+<body>
+  <script type="text/javascript">
+  function loadScript(url,callBack){
+    var script = document.createElement('script');
+    script.type="text/javascript";
+    if(script.readyState){//ie
+      script.onreadystatechange=function(){
+        if(script.readyState=="loaded"||
+            script.readyState=="complete"){
+              script.onreadystatechange=null;
+              callBack()
+            }
+      };
+    }else{//others:ff,sf,op,cm
+      script.onload=function(){
+        callBack()
+      }
+    }
+    script.src=url;
+    document.body.appendChild(script)
+  }
+
+  window.baidu = {
+    sug: function(data){
+      console.log(data);
+     }
+  }
+
+ loadScript('http://suggestion.baidu.com/su?wd=w',function(){console.log('loaded')});
+
+  </script>
+</body>
+</html>

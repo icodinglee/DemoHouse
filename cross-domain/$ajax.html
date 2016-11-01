@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="button" id="btn" value="search">
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.js"></script>
+  <script>
+  window.onload=function(){
+    $('#btn').click(function(){
+       $.ajax({
+            type: "get",
+            async: false,
+            url: "https://api.douban.com/v2/book/1220562",
+            dataType: "jsonp",
+            jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+            jsonpCallback:"flightHandler",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
+            success: function(json){
+              // 获得的信息
+              console.log(json)
+            },
+            error: function(){
+                alert('fail');
+            }
+        });
+    })
+  }
+  </script>
+</body>
+</html>

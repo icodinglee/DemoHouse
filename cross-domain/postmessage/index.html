@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+<iframe id="myIFrame"
+  src="./child.html" style="display:none"></iframe>
+
+  <script type="text/javascript">
+  var domain = '*';
+  var iframe = document.getElementById('myIFrame').contentWindow;
+
+  //发送消息
+  setInterval(function(){
+  	var message = 'Hello!  The time is: ' + (new Date().getTime());
+  	console.log('blog.local:  sending message:  ' + message);
+          //send the message and target URI
+  	iframe.postMessage(message,domain);
+  },2000);
+
+//查看这里　http:http://www.52codes.net/article/282.html
+  </script>
+</body>
+</html>

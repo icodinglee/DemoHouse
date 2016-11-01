@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    cors就是使用自定义的HTTP头部让浏览器与服务器进行沟通，从而决定请求或响应是应该成功，还是应该失败。
+  </div>
+  <script type="text/javascript">
+  function createCORS(method, url){
+    var xhr = new XMLHttpRequest();
+    if('withCredentials' in xhr){
+        xhr.open(method, url, true);
+    }else if(typeof XDomainRequest != 'undefined'){
+        var xhr = new XDomainRequest();
+        xhr.open(method, url);
+    }else{
+        xhr = null;
+    }
+    return xhr;
+ }
+
+ var request = createCORS('get', 'https://api.douban.com/v2/book/1220562');
+
+  if(request){
+    request.onload = function(){
+        //如果服务器头没有开启Access-Control-Allow-Origin，cors将不能使用
+    };
+    request.send();
+  }
+  </script>
+
+</body>
+</html>

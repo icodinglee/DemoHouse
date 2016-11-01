@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>返回数据类型为json</title>
+</head>
+<body>
+  <div>
+    JSONP原理：<br/>
+  首先在客户端注册一个callback, 然后把callback的名字传给服务器。<br/>
+
+  此时，服务器先生成 json 数据。<br/>
+  然后以 javascript 语法的方式，生成一个function , function 名字就是传递上来的参数 jsonp.<br/>
+
+  最后将 json 数据直接以入参的方式，放置到 function 中，这样就生成了一段 js 语法的文档，返回给客户端。<br/>
+
+  客户端浏览器，解析script标签，并执行返回的 javascript 文档，此时数据作为参数，传入到了客户端预先定义好的 callback 函数里.（动态执行回调函数）
+  </div>
+
+  <script type="text/javascript">
+  function loadScript(url,callBack){
+    var script = document.createElement('script');
+    script.type="text/javascript";
+    if(script.readyState){//ie
+      script.onreadystatechange=function(){
+        if(script.readyState=="loaded"||
+            script.readyState=="complete"){
+              script.onreadystatechange=null;
+              callBack()
+            }
+      };
+    }else{//others:ff,sf,op,cm
+      script.onload=function(){
+        callBack()
+      }
+    }
+    script.src=url;
+    document.body.appendChild(script)
+  }
+  //创建回调函数
+  function jsonpCallback(data){
+    console.log(data)
+  }
+
+ loadScript('https://api.douban.com/v2/book/1220562?callback=jsonpCallback',  //这里的网址要发生变化：原来的网址＋？callback=jsonpCallback
+       function(){console.log("loaded")});
+
+  </script>
+</body>
+</html>
