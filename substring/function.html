@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script type="text/javascript">
+  //递归
+  function fact(num){
+    if (num<=1){
+    return 1;
+    }else{
+    return num*fact(num-1);
+    }
+　}
+console.log(fact(4))//4*3*2*1
+
+//递归
+function facts(num) {
+            if (num <= 1) {
+                 return 1;
+            } else {
+                 return num * arguments.callee(num - 1); //此处更改了。
+            }
+         }
+var anotherFact = facts;
+facts = null;
+console.log(anotherFact(4)); //结果为24.
+//console.log(facts(4))//error
+
+//循环与递归的对比
+//循环
+function sum(num){
+  var result=1;
+  while (num>1){
+    result+=num;
+    num--;
+  }
+  return result;
+}
+//递归
+function sum2(num) {
+  if (num>1){
+    return num+sum2(num-1)
+  }else{
+    return 1
+  }
+}
+
+console.log(sum(3))
+console.log(sum2(3))
+
+//猴子吃桃问题
+var summ=0;
+var nn=1;
+function find(day){
+  if(day>1){
+    summ=(summ+1)*2;
+    return summ+find(day-1)
+  }else{
+    return 1
+  }
+}
+console.log(find(7))
+
+//
+  </script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>window</title>
+</head>
+<body>
+<script type="text/javascript">
+window.onload=function(){
+  //如何获取光标的所在位置
+  function getX(e){
+    e=e||window.event;
+    //先检查非ie浏览器，再检查ie的位置
+    return e.pageX || e.clientX+document.body.scorll.left
+  }
+
+  //兼容浏览器的获取指定元素elem的样式属性name的方法
+  function getSytes(elem,name){
+    if(elem.style[name]){ //如果属性存在style []中，直接取
+      return elem.style[name];
+    }else if(elem.currentStyle){//ie
+      return elem.currentStyle[name]
+    }//w3c
+    else if (document.defaultView&&document.defaultView.getComputedStyles){
+      name=name.replace(/[A-Z]/g,"-$1");//w3c中为textAlign样式，转化为text-align
+      name=name.toLowerCase();
+      var s=document.defaultView.getComputedStyles(elem,"");//getComputedStyle是一个可以获取当前元素所有最终使用的CSS属性值。ff火狐
+      return s && s.getPropetyValue(name);
+    }else{
+      return null
+    }
+  }
+
+ //javascript中实现类似php的print函数
+ function print_r(theobj){
+   var reStr="";
+   if(typeof theobj=="object"){
+     reStr +='<div style="font-family:Tahoma;font-size:7px;"';
+     for(var p in theobj){
+       if(typeof theobj[p]=="object"){
+         reStr +='<div><b>['+p+']=>'+typeof(theobj)+'</b></div>';
+         reStr +='<div style="padding-left:25px;">'+print_r(theobj[p])+"</div>";
+       }else{
+         reStr +='<div>['+p+']=>'<b>+typeof(theobj)+'</b></div>';
+       }
+     }
+     reStr +="</div>"
+   }
+   return reStr
+ }
+
+ //parseint
+ var b=parseInt("17")
+ console.log(b)//1
+ var c=parseInt("09/08/2009")
+ console.log(c)//9
+ var d=parseInt("17",15)
+ console.log(d) //22(1*15+7)
+ var z=parseInt("01.2")
+ console.log(z)//1
+
+　//立即执行函数(不明白)
+　var foo="hello";
+  (function(){
+    var foo=foo||"world"
+    console.log(foo) //"world"
+  })()
+
+   //异步加载js结束方案　方案一：defer　只支持ie 方案二async
+   //创建script,插入到ｄｏｍ，加载完毕后callBack,
+   function loadscript(url,callBack){
+     var script=document.creatElement("script")
+     script.type="text/javascript";
+     if(script.readyState){//ie
+       script.onreadystatechange=function(){
+         if(script.readyState=="loaded"||
+             script.readyState=="complete"){
+               script.onreadystatechange=null;
+               callBack()
+             }
+       };
+     }else{//others:ff,sf,op,cm
+       script.onload=function(){
+         callBack()
+       }
+     }
+     script.src=url;
+     document.body.appendChild(script)
+   }
+
+
+
+}
+
+</script>
+</body>
+</html>

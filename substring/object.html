@@ -19,6 +19,53 @@
       }
     }
     console.log(obj.a)
+
+  //一个英文占用一个字节，一个中文字符占用两个字节（中文字符包括标点符号）
+  function getBytes(str){
+    var len =str.length,
+         bytes=len;
+    for(var i=0;i<len;i++){
+      if(str.charCodeAt(i)>255) bytes++
+    }
+    return bytes
+  }
+  console.log(getBytes("wbjfb，我好"))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  }//这个是最大的结束符
   </script>
 </body>
 </html>

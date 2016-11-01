@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <input type="button" id="btn1" value="1" onclick="movebtn(this)" />
+    <input type="button" id="btn2" value="2" />
+  </div>
+  <div>
+    <ul id="test">
+      <li> 1</li>
+      <li> 2</li>
+      <li> 3</li>
+    </ul>
+  </div>
+  <script type="text/javascript">
+  //克隆
+  function movebtn(obj){
+    var clone=obj.cloneNode(true);
+    var parent=obj.parentNode;
+    parent.appendChild(clone)
+    parent.removeChild(obj)
+  }
+
+//点击每一列alert index
+  (function a(){
+    var index=0;
+    var ul=document.getElementById("test");
+    var obj={};
+    console.log(ul.childNodes)
+    for(var i=0,I=ul.childNodes.length;i<I;i++){
+      if(ul.childNodes[i].nodeName.toLowerCase()=="li"){
+        var li=ul.childNodes[i]
+        li.onclick=function(){
+          index++;
+          alert(index)
+        }
+      }
+    }
+  })()
+
+  window.onload=function(){
+  //javascript如何对一个对象进行深度克隆
+  function cloneObject(obj){
+    if(!obj||"object"!==typeof obj){
+      return o;
+    }
+    var c="function"===typeof obj.pop?[]:{};
+    var p,v;
+    for(p in obj){
+      if(obj.hasOwnProperty(p)){
+        c[p]==Ext.ux.clone(v)
+      }else{
+        c[p]=v
+      }
+    }
+  }
+
+//argument传入多个参数
+function sum(){
+  var result=0;
+  for(var i=0,len=arguments.length;i<len;i++){
+    if(typeof(arguments[i])!=="number"){
+      arguments[i]=0
+    }
+    result=Number(arguments[i])+result
+  }
+  var a=result.toFixed(1)//保留一位小数
+  return a
+}
+console.log(sum(0.1,null,false,0.20,"hhh"))
+
+//控制换行　\n
+alert("p \n p")
+console.log(["1","2","3"].map(parseInt))
+
+
+
+
+
+}
+  </script>
+</body>
+</html>
