@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+  <input type="text" id="name" placeholder="name"/>
+  <input type="number" id="phone"  placeholder="phone"/>
+  <input type="text" id="age" placeholder="age"/>
+  <input type="button" id="submt" value="submit" />
+  <input type="text" id="wantvalue" placeholder="请输入要用户查询的信息"/>
+  <input type="button" id="search" value="search" />
+  <input type="text" id="updatevalue" placeholder='更新形式："xx:xx"'/>
+  <input type="button" id="update" value="update" />
+  <input type="text" id="deletevalue" placeholder="要删除的条目"/>
+  <input type="button" id="delete" value="delete" />
+
+  <script type="text/javascript">
+  //console.log(localStorage)
+  localStorage.clear()  //清除localStorage
+  function getdome(dom){
+    return document.getElementById(dom)
+  }
+  var _name=getdome("name")
+  var _number=getdome("phone")
+  var _age=getdome("age")
+  var _submt=getdome("submt")
+  var _wantvalue=getdome("wantvalue")
+  var _search=getdome("search")
+  var _deletevalue=getdome("deletevalue")
+  var _delete=getdome("delete")
+  var _updatevalue=getdome("updatevalue")
+  var _update=getdome("update")
+
+  //保存＆＆添加
+  function saveItem(){
+    var data = {};
+    data.name=_name.value;
+    data.number=_number.value;
+    data.age=_age.value;
+    var dataJson=JSON.stringify(data)
+    localStorage.setItem(data.name,dataJson)　//这个里面好像只能存字符串
+    localStorage.setItem("test","dataJson")
+    localStorage.setItem("willdelete","这个将要被删除")
+  }
+  _submt.onclick=function(e) {
+    console.log(typeof localStorage.test)
+    console.log(typeof localStorage.arry)
+    saveItem()
+    console.log(localStorage)
+    localStorage.removeItem("arry")
+  //  localStorage.clear()
+    console.log(typeof localStorage)
+  }
+
+  //搜索
+_search.onclick=function(e){
+  var _value=_wantvalue.value
+  if(localStorage.getItem(_value)===null){
+    console.log("不存在")
+  }else{
+    console.log(localStorage.getItem(_value))　　//使用方法获取！！
+  }
+}
+
+　//删除
+_delete.onclick=function(e){
+  var _value=_deletevalue.value
+  if(localStorage.getItem(_value)===null){
+    console.log("qqq")
+  }else{
+    localStorage.removeItem(_value)
+    console.log("已经删除"+_value)
+    console.log(localStorage)
+  }
+}
+
+//更新
+_update.onclick=function(e){
+  var _value=_updatevalue.value
+  if(localStorage.getItem(_value)===null){
+    console.log("未找到当前数据")
+  }else{
+  var json=JSON.parse(localStorage.getItem(_value))
+  json.name="nille"
+  var dataJson=JSON.stringify(json)
+  localStorage.setItem(json.name,dataJson)
+  localStorage.removeItem(_value)
+  console.log(localStorage)
+  seeAll()
+  }
+}
+
+//其他的一些操作
+localStorage["date"]="12:00"
+console.log(localStorage["date"])
+
+// 进行遍历
+function seeAll(){
+  var storage = window.localStorage;
+  for (var i=0, len = storage.length; i  <  len; i++){
+      var key = storage.key(i);
+      var value = storage.getItem(key);
+      console.log(key + "=" + value); }
+}
+
+//storage事件，可以对键值对的改变进行监听
+window.addEventListener("storage",showStorageEvent,true);
+function showStorageEvent(e){
+      console.log(e)
+      console.log("oldValue: "+ e.oldValue + " newValue:" + e.newValue)
+}
+
+
+  </script>
+</body>
+</html>

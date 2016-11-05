@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script type="text/javascript">
+  var data = {};
+  data.username = "peter";
+  data.email = "1184416980@qq.com";
+  data.phone = 18712760293;
+  data.memo = "hjfc2344kjabewkjfw23543";
+  console.log(data)
+  alert(data)
+  alert(data.username)
+
+  //json转化为字符串
+  var dataJson = JSON.stringify(data);
+  alert(dataJson)
+  console.log(dataJson.username) //undefined
+  console.log(typeof dataJson) //string
+
+  //字符串转化为json
+  var _json=JSON.parse(dataJson)
+  console.log(_json)
+  </script>
+</body>
+</html>
+
+<!-- 语法：
+JSON.stringify(value [, replacer] [, space])
+value：是必须要的字段。就是你输入的对象，比如数组啊，类啊等等。
+replacer：这个是可选的。它又分为2种方式，一种是方法，第二种是数组。
+情况一：我们先说数据，通过我们后面的实验可以知道，它是和第一个有关系的。一般来说，我们系列化后的结果是通过键值对来进行表示的。
+比如说：
+name:"lan",age:25
+这种形式。
+所以，如果这种形式的话，如果第二个的值在第一个存在，那么的话就以第二个的值做key，第一个值为value进行表示，如果不存在，sorry，忽略。【是不是有点抽象，我也这么觉得，不过你等一下看实验 就OK了。。呼呼。】
+情况二：如果是方法，那很简单，就是说把系列化后的每一个对象（记住 是每一个）传进方法里面进行处理。
+space：很好理解，用什么来做分隔符的。
+1.如果省略的话，那么显示出来的值 就没有分隔符。直接输出来
+2.如果是一个数字的话，那么它就定义缩进几个字符，当然 如果大于10 ，则最大值为10.
+3.如果是一些转义字符，比如“\t”，表示回车，那么它每行一个回车。
+4.如果仅仅是字符串，OK，就在每行输出值的时候把这些字符串附加上去就OK。当然，最大长度也是10个字符。  -->
