@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style >
+    #box1{
+      background-color: red;
+      width:40px;
+      height:40px;
+      border-radius: 20px;
+
+
+    }
+    #box2{
+      background-color: green;
+      width:40px;
+      height:40px;
+      border-radius: 20px;
+
+    }
+    #box3{
+      background-color: blue;
+      width:40px;
+      height:40px;
+      border-radius: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div id="text">click</div>
+  </div>
+  <div>
+    <div id="box1" style="margin-left:10px"></div>
+    <div id="box2" style="margin-left:10px"></div>
+    <div id="box3" style="margin-left:10px"></div>
+  </div>
+  <script>
+  window.onload=function(){
+    // function test(num,call){
+    //   num++;
+    //   call(num)
+    // }
+    // test(10,function(xx){
+    //   console.log(xx)
+    // })
+    // function Event(ele,event,callback){
+    //   var dom =document.getElementById(ele)
+    //   console.log(dom)
+    //   dom.addEventListener(event,callback)
+    // }
+    // Event("text","click",function(e){
+    //   console.log(e)
+    // })
+    // Event("text","mouseover",function(){
+    //   console.log("mouseover")
+    // })
+
+    var ball1=document.querySelector("#box1")
+    var ball2=document.querySelector("#box2")
+    var ball3=document.querySelector("#box3")
+
+    function move(ball,distance,callback){
+      setTimeout(function(){
+       var num=parseInt(ball.style.marginLeft,10);
+        if(num==distance){
+            callback && callback()
+          }else if(num>distance){
+            num--;
+            ball.style.marginLeft=num+"px";
+            move(ball,distance,callback)
+          }else{
+            num++;
+            ball.style.marginLeft=num+"px";
+            move(ball,distance,callback)
+          }
+
+      },13)
+    }
+
+    function test(){
+      console.log("666")
+     }
+
+    move(ball1,100,function (){
+      move(ball2,200,function(){
+        move(ball3,300,function(){
+          move(ball1,200,test);
+          move(ball3,200,function(){
+            move(ball1,10)
+            move(ball2,10)
+            move(ball3,10)
+          })
+        })
+      })
+    })
+}
+  </script>
+</body>
+</html>

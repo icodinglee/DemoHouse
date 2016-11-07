@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  window.onload=function(){
+
+  function people(name){
+      this.name=name;
+      this.say=function(){
+        console.log(this.name)
+      }
+    }
+    people.prototype.age=function(){
+      this.age=36
+    }
+    people.prototype.age=30
+    people.prototype.sayage = function () {
+      console.log(this.age)
+    };
+    var person =new people("peter")
+    person.say()
+    person.sayage()
+    console.log(person)
+
+    //construtor 和 prototype
+    Array.prototype.age="peter"
+    var arr=new Array();
+    arr=[1,2,3]
+    console.log(arr)
+
+    //构造
+    function Father(name){
+        this.name=name||"peter";
+        this.say=function(){
+          console.log(this.name)
+        }
+      }
+
+    Son.prototype= new Father()
+    function Son(name){
+      this.name=name;
+      this.sayname=function(){
+        console.log("wo are family")
+      }
+    }
+    var son=new Son("jack");
+    console.log(typeof Son)
+    console.log(typeof son)
+    son.sayname()
+    son.say()
+
+}
+  </script>
+</body>
+</html>

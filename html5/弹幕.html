@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>弹幕</title>
+<style type="text/css">
+*{ margin:0; padding:0}
+#myvideo{position:relative;}
+#tm{ margin:0 auto; height:330px; width:50%;position:relative; overflow:hidden;}
+#tm div{ height:20px;line-height:20px; position:absolute; width:100%;}
+#btn{ margin:0 auto; width:300px; height:20px;}
+#text{outline: none;border-radius: 1px;width:200px; height:20px;}
+#submit{margin-top: 12px;width: 40px}
+#vdo{position:absolute;height:400px; width:50%;top:0%;left:25%;z-index: -1}
+</style>
+<script type="text/javascript">
+        function $(id){return document.getElementById(id)};
+window.onload=function(){
+        var timer=null;
+        var newarr=[];
+        $("submit").onclick=function(){
+                clearInterval(timer);
+                var text=$("text").value;
+                var newnode=document.createElement("div");
+                        newnode.innerHTML=text;
+                        var mathtop=Math.random()*($("tm").offsetWidth-20)
+                        if(mathtop>310){mathtop=mathtop/3}
+                        newnode.style.top=mathtop+"px";
+                        newnode.style.left="600px";
+                        newnode.style.color="#"+randomColor();
+                        console.log(newnode.innerHTML)
+                $("tm").appendChild(newnode);
+                timer=setInterval(move,20);
+                }
+        function move(){
+                        var arr=$("tm").getElementsByTagName("div");
+                        for(var i=0;i<arr.length;i++){
+                                newarr.push(arr[i].offsetLeft);
+                                arr[i].style.left=newarr[i]+"px";
+                                newarr[i]--;
+                                if(newarr[i]<0){
+                                  arr[i].parentNode.removeChild(arr[i]);
+                                  newarr.splice(i,1)
+                               }
+                        }
+                       if(arr.length==0){clearInterval(timer)}
+                       console.log(arr)
+                }
+        function randomColor() {
+          var color = Math.ceil(Math.random( ) * 16777215).toString(16);
+          while(color.length<6){
+                  color="0"+color;
+                  }
+          return color;
+         }
+        }
+</script>
+</head>
+
+<body>
+<div id="myvideo">
+<div id="tm"></div>
+<video src="http://o86bpj665.bkt.clouddn.com/redux-tower/5-redux-store.mp4" id="vdo"  controls>
+</video>
+</div>
+<div id="btn">
+    <input type="text" value="" id="text"/>
+    <input type="button" id="submit" value="发表"/>
+</div>
+</body>
+</html>

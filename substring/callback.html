@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style >
+    #box1{
+      background-color: red;
+      width:40px;
+      height:40px;
+      border-radius: 20px;
+
+
+    }
+    #box2{
+      background-color: green;
+      width:40px;
+      height:40px;
+      border-radius: 20px;
+
+    }
+    #box3{
+      background-color: blue;
+      width:40px;
+      height:40px;
+      border-radius: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div id="text">click</div>
+  </div>
+  <div>
+    <div id="box1" style="margin-left:10px"></div>
+    <div id="box2" style="margin-left:10px"></div>
+    <div id="box3" style="margin-left:10px"></div>
+  </div>
+  <script>
+  window.onload=function(){
+    // function test(num,call){
+    //   num++;
+    //   call(num)
+    // }
+    // test(10,function(xx){
+    //   console.log(xx)
+    // })
+    // function Event(ele,event,callback){
+    //   var dom =document.getElementById(ele)
+    //   console.log(dom)
+    //   dom.addEventListener(event,callback)
+    // }
+    // Event("text","click",function(e){
+    //   console.log(e)
+    // })
+    // Event("text","mouseover",function(){
+    //   console.log("mouseover")
+    // })
+
+    var ball1=document.querySelector("#box1")
+    var ball2=document.querySelector("#box2")
+    var ball3=document.querySelector("#box3")
+
+    function move(ball,distance,way,callback){
+      setTimeout(function(){
+       var num=parseInt(ball.style.marginLeft,10);
+        if(way){
+          num++;
+          ball.style.marginLeft=num+"px";
+          if(num<=distance){
+              move(ball,distance,way,callback)
+          }else{
+              callback()
+            }
+        }else{
+
+          num--;
+          ball.style.marginLeft=num+"px";
+          if(num>=distance){
+              move(ball,distance,way,callback)
+          }else{
+              callback()
+         };
+
+        }
+      },13)
+    }
+
+    function test(){
+      console.log("666")
+     }
+
+    move(ball1,100,true,function (){
+      move(ball2,200,true,function(){
+        move(ball3,300,true,function(){
+          move(ball1,200,true,test);
+          move(ball3,200,false,function(){
+            move(ball1,10,false,test)
+            move(ball2,10,false,test)
+            move(ball3,10,false,test)
+          })
+        })
+      })
+    })
+}
+  </script>
+</body>
+</html>
