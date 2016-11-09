@@ -67,3 +67,4 @@ sudo apt-get install nginx
 ｀
 　在服务器　sudo apt-get install tmux
 ｀
+[参考这里](http://blog.csdn.net/skykingf/article/details/46345057)
