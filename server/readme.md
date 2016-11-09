@@ -24,6 +24,10 @@ sudo apt-get install git curl
 `
 sudo apt-get install nginx
 `
+### 将本地文件上传到服务器的主目录下
+｀scp -r bigdome ubuntu@100.100.100.100:
+`
+
 ### 配置nginx
 `
 - cd ~
@@ -37,7 +41,7 @@ sudo apt-get install nginx
  server{
         listen 80 default;
         server_name lihongkai.com;
-        root /home/icodinglee/bigdome/socket.io/chat-example/;
+        root /home/ubuntu/bigdome/client;
  }
 `
 
@@ -50,3 +54,16 @@ sudo apt-get install nginx
 - 文件中的localhost都要改为100.100.100.100；
 包括客户端和服务器端,
 - 开启多个文件入口需要修改不同的端口号
+
+### 退出登陆　ctrl+D
+
+### 命令行
+
+｀
+　i（进入插入模式） --- Esc（结束插入模式）  --- ZZ(按两下大写Z可保存退出)
+｀
+
+### 进程在命令行挂起
+｀
+　在服务器　sudo apt-get install tmux
+｀
