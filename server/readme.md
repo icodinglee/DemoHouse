@@ -19,7 +19,34 @@ sudo apt-get install git curl
 `
 
 ### mongodb
-[查看这里](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
+[查看这里，详细阅读收益多多](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
+  - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+  - ubuntu 14.04
+    - echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+  - ubuntu 16.04
+    - echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+  - sudo apt-get update
+  - sudo apt-get install -y mongodb-org
+
+安装之后如果显示端口被占用　执行 *sudo service mongod stop*　　重启mongod服务即可
+
+出现 *I CONTROL [initandlisten] * WARNING: /sys/kernel/mm/transparent_hugepage/enabled is 'always'* 的解决办法
+
+
+`
+  只需打开/etc/init/mongod.conf文件，将下方的代码添加到chown $DEAMONUSER /var/run/mongodb.pid 和 end script.之间即可，注意空格的对齐。
+`
+
+```
+  if test -f /sys/kernel/mm/transparent_hugepage/enabled; then
+   echo never > /sys/kernel/mm/transparent_hugepage/enabled
+  fi
+  if test -f /sys/kernel/mm/transparent_hugepage/defrag; then
+   echo never > /sys/kernel/mm/transparent_hugepage/defrag
+  fi
+```
+
+[click here for more](http://www.myexception.cn/database/1945649.html)
 ### 安装　nginx
 `
 sudo apt-get install nginx
