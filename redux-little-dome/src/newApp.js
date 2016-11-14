@@ -5,7 +5,7 @@ import { addAge, decAge ,setTime} from './action/changeAge'
 import { browserHistory } from 'react-router';
 
 
-class App extends React.Component {
+class newApp extends React.Component {
   constructor(props){
      super(props);
    }
@@ -27,7 +27,7 @@ class App extends React.Component {
     setTime("1",5)
   }
   skip(){
-    browserHistory.push('/')
+    browserHistory.push('/app')
   }
   render () {
   let { num , age }=this.props
@@ -37,9 +37,9 @@ class App extends React.Component {
               <input  type="button" value="+" onClick={this.addMumber.bind(this) }></input>
               <input  type="button" value="-" onClick={this.decMumber.bind(this) }></input><br />
               { age }  <br />
-             <input  type="button" value="*" onClick={addAge}></input>
-             <input  type="button" value="/" onClick={this.decAge.bind(this)}></input>
              <input  type="button" value="ASY" onClick={this.setTime.bind(this)}></input>
+             <input  type="button" value="**" onClick={addAge}></input>
+             <input  type="button" value="/" onClick={this.decAge.bind(this)}></input>
              <input  type="button" value="跳转" onClick={this.skip.bind(this)}></input>
          </div>
   }
@@ -53,4 +53,4 @@ const mapStateToProps = (state) => ({
 
 export default connect((mapStateToProps),{
   addNumber,decNumber,addAge,decAge,setTime
-})(App)
+})(newApp)
