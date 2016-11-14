@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import {connect} from 'react-redux'
 import { addNumber,decNumber} from './action/changeNumber'
 import { addAge, decAge ,setTime} from './action/changeAge'
+import { findBio } from './action/findBio'
 import { browserHistory } from 'react-router';
 
 
@@ -29,8 +30,12 @@ class App extends React.Component {
   skip(){
     browserHistory.push('/')
   }
+  findMovie(){
+    let { findBio }=this.props
+    findBio()
+  }
   render () {
-  let { num , age }=this.props
+  let { num , age ,bio}=this.props
   let { addAge }=this.props  //如果在render 里面直接用props里的方法，不能变量赋值，不然会报错
   return  <div>
               { num  } <br />
@@ -40,7 +45,9 @@ class App extends React.Component {
              <input  type="button" value="*" onClick={addAge}></input>
              <input  type="button" value="/" onClick={this.decAge.bind(this)}></input>
              <input  type="button" value="ASY" onClick={this.setTime.bind(this)}></input>
-             <input  type="button" value="跳转" onClick={this.skip.bind(this)}></input>
+             <input  type="button" value="跳转" onClick={this.skip.bind(this)}></input> <br/>
+             { bio }<br/>
+           <input  type="button" value="findBio" onClick={this.findMovie.bind(this)}></input>
          </div>
   }
 }
@@ -48,9 +55,10 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => ({
   num:state.num,
-  age:state.age
+  age:state.age,
+  bio:state.bio
 })
 
 export default connect((mapStateToProps),{
-  addNumber,decNumber,addAge,decAge,setTime
+  addNumber,decNumber,addAge,decAge,setTime,findBio
 })(App)

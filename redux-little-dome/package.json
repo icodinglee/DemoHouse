@@ -16,6 +16,7 @@
   "author": "happypeter",
   "license": "MIT",
   "devDependencies": {
+    "axios": "^0.15.2",
     "babel-core": "^6.6.5",
     "babel-eslint": "^5.0.0-beta4",
     "babel-loader": "^6.2.4",
