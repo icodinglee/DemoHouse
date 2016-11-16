@@ -125,6 +125,7 @@ o.p = 123 // "setter: 123"
 
 ### 对象拷贝
 - 将一个对象的所有属性，拷贝到另一个对象
+
 ```
 var extend = function (to, from) {
   for (var property in from) {
@@ -138,7 +139,6 @@ extend({}, {
   a: 1
 })
 // {a: 1}
-
 上面这个方法的问题在于，如果遇到存取器定义的属性，会只拷贝值。
 为了解决这个问题，我们可以通过Object.defineProperty方法来拷贝属性。
 var extend = function (to, from) {
@@ -157,6 +157,7 @@ extend({}, { get a(){ return 1 } })
 // { get a(){ return 1 } })
 
 ```
+
 - 深度拷贝一个对象
 ```
 var extend = function (to, from) {
@@ -185,6 +186,7 @@ var extend = function (to, from) {
 - Object.isSealed方法用于检查一个对象是否使用了Object.seal方法。
 
 - Object.freeze方法可以使得一个对象无法添加新属性、无法删除旧属性、也无法改变属性的值，使得这个对象实际上变成了常量。 (这个比较厉害)
+
 ```
 var obj = {
   foo: 1,
@@ -195,3 +197,35 @@ Object.freeze(obj);
 obj.bar.push('c');
 obj.bar // ["a", "b", "c"]
 ```
+
+ ## Object.keys()，Object.getOwnPropertyNames()
+ - Object.keys方法和Object.getOwnPropertyNames方法很相似，一般用来遍历对象的属性,返回一个数组，该数组的成员都是对象自身的（而不是继承的）所有属性名
+ - Object.keys方法只返回可枚举的属性（关于可枚举性的详细解释见后文），Object.getOwnPropertyNames方法还返回不可枚举的属性名。
+
+ ## 原型链相关方法
+ - Object.create()：生成一个新对象，并该对象的原型。
+ - Object.getPrototypeOf()：获取对象的Prototype对象。
+   - Object.create(proto [, propertiesObject ]) 是E5中提出的一种新的对象创建方式，第一个参数是要继承的原型，如果不是一个子函数，可以传一个null，第二个参数是对象的属性描述符，这个参数是可选的。
+   ```
+      function Car (desc) {
+        this.desc = desc;
+        this.color = "red";
+      }
+
+      Car.prototype = {
+          getInfo: function() {
+            return 'A ' + this.color + ' ' + this.desc + '.';
+          }
+      };
+      //instantiate object using the constructor function
+      var car =  Object.create(Car.prototype);
+      car.color = "blue";
+      alert(car.getInfo());
+      //A blue undefined.
+   ```
+
+## 对象实例方法
+- 　valueOf()　返回当前对象的对应值
+-  toString() 返回当前对象对应的字符串形式
+-  toLocaleString()  返回当前对象对应的本地字符串形式
+-  isPrototypeOf() 判断当前对象是否为另一个对象的原型。
