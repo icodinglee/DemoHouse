@@ -74,6 +74,7 @@ var arr = ['a', 'b', 'c'];
 
  ['b', 'c']
 ```
+
 ### forEach()
 - orEach方法与map方法很相似，也是遍历数组的所有成员，执行某种操作，但是forEach方法一般不返回值，只用来操作数据。如果需要有返回值，一般使用map方法。
 - forEach方法也可以接受第二个参数，用来绑定回调函数的this关键字。
@@ -141,6 +142,7 @@ arr.every(function (elem, index, arr) {
 ```
 ### reduce()，reduceRight()
 - reduce方法和reduceRight方法依次处理数组的每个成员，最终累计为一个值。
+
 ```
 这两个方法的第一个参数都是一个函数。该函数接受以下四个参数。
 累积变量，默认为数组的第一个成员
@@ -174,7 +176,9 @@ Array.prototype.sum = function (){
 [3, 4, 5, 6, 10].sum()
 ```
 
-- reduce 和　reduceRight区别
+- reduce 和reduceRight区别
+
+
 ```
 function substract(prev, cur) {
   return prev - cur;
@@ -185,6 +189,7 @@ function substract(prev, cur) {
 ```
 
 - 找出长度最长的数组元素。
+
 ```
 function findLongest(entries) {
   return entries.reduce(function (longest, entry) {
@@ -218,5 +223,126 @@ users
 })
 .forEach(alert);
 // 弹出tom@example.com
+```
 
+### length 属性
+- 该属性是一个动态的值，等于键名中的最大整数加上1。
+```
+var arr=[]
+arr[9] = 'd';
+arr.length // 10
+```
+- 数组的数字键不需要连续，length属性的值总是比最大的那个整数键大1。另外，这也表明数组是一种动态的数据结构，可以随时增减数组的成员。
+- 如果人为设置一个小于当前成员个数的值，该数组的成员会自动减少到length设置的值。
+- 如果人为设置length大于当前元素个数，则数组的成员数量会增加到这个值，新增的位置都是空位。
+
+```
+var a = [];
+
+a['p'] = 'abc';
+a.length // 0
+
+a[2.1] = 'abc';
+a.length // 0
+```
+
+- 上面代码将数组的键分别设为字符串和小数，结果都不影响length属性。因为，length属性的值就是等于最大的数字键加1，而这个数组没有整数键，所以length属性保持为0。
+
+```
+var arr = [];
+arr[-1] = 'a';
+arr[Math.pow(2, 32)] = 'b';
+
+arr.length // 0
+arr[-1] // "a"
+arr[4294967296] // "b"
+```
+
+- 如果数组的键名是添加超出范围的数值，该键名会自动转为字符串。
+
+### 类似数组的对象
+- 类似数组的对象只有一个特征，就是具有length属性。换句话说，只要有length属性，就可以认为这个对象类似于数组。但是，对象的length属性不是动态值，不会随着成员的变化而变化。
+
+```
+var obj = {
+  length: 0
+};
+obj[3] = 'd';
+obj.length // 0
+```
+
+#### 典型的类似数组的对象是函数的arguments对象，以及大多数DOM元素集，还有字符串
+#### 数组的slice方法将类似数组的对象，变成真正的数组。
+
+```
+var arr = Array.prototype.slice.call(arrayLike);
+```
+
+#### 遍历类似数组的对象，可以采用for循环，也可以采用数组的forEach方法。
+
+```
+// for循环
+function logArgs() {
+  for (var i = 0; i < arguments.length; i++) {
+    console.log(i + '. ' + arguments[i]);
+  }
+}
+
+// forEach方法
+function logArgs() {
+  Array.prototype.forEach.call(arguments, function (elem, i) {
+    console.log(i+'. '+elem);
+  });
+}
+```
+
+#### in 运算符
+
+```
+var arr = [ 'a', 'b', 'c' ];
+2 in arr  // true
+'2' in arr // true
+4 in arr // false
+```
+
+#### for…in 循环和数组的遍历
+- 组的遍历可以考虑使用for循环或while循环。不推荐使用for...in遍历数组。
+- 使用delete命令删除一个数组成员，会形成空位，并且不会影响length属性。所以，使用length属性进行数组遍历，一定要非常小心。
+- 数组的某个位置是空位，与某个位置是undefined，是不一样的。如果是空位，使用数组的forEach方法、for...in结构、以及Object.keys方法进行遍历，空位都会被跳过。
+
+```
+var a = [, , ,];
+
+a.forEach(function (x, i) {
+  console.log(i + '. ' + x);
+})
+// 不产生任何输出
+
+for (var i in a) {
+  console.log(i);
+}
+// 不产生任何输出
+
+Object.keys(a)
+// []
+
+
+var a = [undefined, undefined, undefined];
+
+a.forEach(function (x, i) {
+  console.log(i + '. ' + x);
+});
+// 0. undefined
+// 1. undefined
+// 2. undefined
+
+for (var i in a) {
+  console.log(i);
+}
+// 0
+// 1
+// 2
+
+Object.keys(a)
+// ['0', '1', '2']
 ```
