@@ -8,6 +8,23 @@
 - var domNodes = Array.prototype.slice.call(document.getElementsByTagName("*"));*
 这样domNodes就可以应用Array下的所有方法了。
 
+```
+function Animal(name){      
+    this.name = name;      
+    this.showName = function(){      
+        alert(this.name);      
+    }      
+}      
+
+function Cat(name){    
+    Animal.call(this, name);    
+}      
+
+var cat = new Cat("Black Cat");     
+cat.showName();
+
+ Animal.call(this) 的意思就是使用 Animal对象代替this对象，那么 Cat中不就有Animal的所有属性和方法了吗，Cat对象就能够直接调用Animal的方法以及属性了.
+```
 
 ### sort()
 - sort方法对数组成员进行排序，默认是按照字典顺序排序。排序后，原数组将被改变
