@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>send-email</title>
+</head>
+<body>
+  <form action="https://postmail.invotes.com/send"
+    method="post" id="email_form">
+
+    <input type="text" name="subject" placeholder="Subject" value="SUBJECT"/><br/>
+    <textarea name="text" placeholder="Message" >This is defaultValue</textarea><br/>
+    <input type="hidden" name="access_token" value="yqeakuz17643zahbzbkynxli" /><br/>
+      <!-- return urls can be fully qualified -OR-
+         start with / for root relative -OR-
+         start with . for url relative -->
+    <input type="hidden" name="success_url" value=".?message=Email+Successfully+Sent%21&isError=0" />
+    <input type="hidden" name="error_url" value=".?message=Email+could+not+be+sent.&isError=1" />
+
+
+    <!-- set the reply-to address -->
+    <input type="text" name="reply_to"
+                placeholder="Your Email" /><br/>
+
+    <!-- to append extra fields, use the extra_ prefix.
+        Entries will be appended to your message body. -->
+    <input type="text" name="extra_phone_number"
+                placeholder="Phone Number" /><br/>
+
+    <!-- to split your message into 160 chars
+         for an sms gateway -->
+    <input type="hidden"
+                name="sms_format" value="true" /><br/>
+
+    <input id="submit_form" type="submit" value="Send" />
+</form>
+
+<!-- optional, prevents the submit button from being pressed more than once -->
+<script>
+    var submitButton = document.getElementById("submit_form");
+    var form = document.getElementById("submit_form");
+    form.onclick = function(e){
+      setTimeout(function() {
+      //  submitButton.value = "send...";
+      //  submitButton.disabled = true;
+        alert("邮件已发送")
+      }, 1);
+      e.preventDefault();
+    };
+
+    //auto send
+    var autoSend=function(){
+        function sub(){
+          document.getElementById("email_form").submit();
+        }
+        setTimeout(sub,1000);
+    }
+    //autoSend()
+
+</script>
+</body>
+</html>
