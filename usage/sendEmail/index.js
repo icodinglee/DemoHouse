@@ -13,7 +13,7 @@ var mailOptions = {
     from: 'Lihk11844@126.com', // sender address
     to: 'Lihk11844@126.com', // list of receivers
     subject: 'Hello ✔', // Subject line
-    text: 'Hello world ✔', // plaintext body
+    text: 'Hello world,Love YOU ✔', // plaintext body
     html: '<b>Hello world ✔</b>' // html body
 };
 

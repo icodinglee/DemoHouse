@@ -1,0 +1,22 @@
+
+.box2{
+  background-color: $third-color;
+  height: 200px;
+  padding-top: 50px;
+  width:100%;
+  .box3{
+    background-color: $primary-color;
+    width:90px;
+    line-height: 40px;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 3px ;
+    transition: all 0.5s;
+    &:hover{
+      background-color:#6200EA;
+      cursor: pointer;
+      transform: scale(1.2,1.2);
+      color: lighten($primary-color,30%);
+    }
+  }
+}
