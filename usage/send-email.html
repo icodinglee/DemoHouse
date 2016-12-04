@@ -43,11 +43,11 @@
     var form = document.getElementById("submit_form");
     form.onclick = function(e){
       setTimeout(function() {
-      //  submitButton.value = "send...";
-      //  submitButton.disabled = true;
+      //  submitButton.value = "send";
+       submitButton.disabled = true;
         alert("邮件已发送")
       }, 1);
-      e.preventDefault();
+      // e.preventDefault();
     };
 
     //auto send

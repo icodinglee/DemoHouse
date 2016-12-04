@@ -11,10 +11,10 @@ var transporter = nodemailer.createTransport({
 
 var mailOptions = {
     from: 'Lihk11844@126.com', // sender address
-    to: 'Lihk11844@126.com', // list of receivers
+    to: '1184416980@qq.com', // list of receivers
     subject: 'Hello ✔', // Subject line
     text: 'Hello world,Love YOU ✔', // plaintext body
-    html: '<b>Hello world ✔</b>' // html body
+    html: '<b>Hello world 666 ✔</b>' // html body
 };
 
 transporter.sendMail(mailOptions, function(error, info){

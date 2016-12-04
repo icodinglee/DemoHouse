@@ -257,6 +257,7 @@ arr.length // 10
 var a = [];
 
 a['p'] = 'abc';
+console.log(a.p) // abc
 a.length // 0
 
 a[2.1] = 'abc';

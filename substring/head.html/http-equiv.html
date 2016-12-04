@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- http-equiv 属性为名称/值对提供了名称。并指示服务器在发送实际的文档之前先在要传送给
+  浏览器的 MIME 文档头部包含名称/值对。 -->
+  <!-- 当服务器向浏览器发送文档时，会先发送许多名称/值对。虽然有些服务器会发送许多这种名称/值对，但是所有服务器都至少要发送一个：content-type:text/html。这将告诉浏览器准备接受一个 HTML 文档。
+  使用带有 http-equiv 属性的 <meta> 标签时，服务器将把名称/值对添加到发送给浏览器的内容头部 -->
+
+  <!-- 返回内容的MIME类型 -->
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <!-- 响应过期的日期和时间,一旦网页过期，必须到服务器上重新调阅 -->
+  <meta http-equiv="expires" content="31 Dec 2008">
+  <!-- 设置浏览器为不缓存当前网页 -->
+  <meta http-equiv="cache-control" content="no-cache" />
+  <!-- 设置网页过期，0表示永不过期或设置-1。 -->
+  <meta http-equiv="expires" content="0" />
+  <!-- 这样发送到浏览器的头部就应该包含：
+  content-type: text/html
+  charset:iso-8859-1
+  expires:31 Dec 2008 -->
+
+<!-- 原始服务器消息发出的时间 -->
+<meta http-equiv="date" content="Wed, 16 Feb 2011 22:34:13 GMT">
+<!-- 请求资源的最后修改时间 -->
+<meta http-equiv="last-modified" content="Mon, 03 Jan 2011 17:45:57 GMT">
+<!-- 用来重定向接收方到非请求URL的位置来完成请求或标识新的资源 -->
+<meta http-equiv="location" content="URL=http://www.runoob.com">
+<!--让网页多长时间（秒）刷新自己，或在多长时间后让网页自动链接到其它网页。 -->
+<meta http-equiv="refresh" content="300; url=http://www.baidu.com">
+<!-- 说明：浏览器访问某个页面时会将它存在缓存中，下次再次访问时就可从缓存中读取，以提高速度。
+当你希望访问者每次都刷新你广告的图标，或每次都 刷新你的计数器，就要禁用缓存了。
+通常HTML文件没有必要禁用缓存，对于ASP等页面，就可以使用禁用缓存，因为每次看到的页面
+都是在服务器动态生成 的，缓存就失去意义。如果网页过期，那么存盘的cookie将被删除 -->
+<meta http-equiv="set-cookie" content="runoobcookie=myContent;expires=Fri, 30 Dec 2015 12:00:00 GMT; path=http://www.runoob.com">
+
+<meta http-equiv="cache-control" content="no-cache">
+<!-- 控制文档的缓存机制。
+public - 所有内容都将被缓存(客户端和代理服务器都可缓存)
+private - 内容只缓存到私有缓存中(仅客户端可以缓存，代理服务器不可缓存)
+no-cache - 不缓存
+no-store - 缓存当不归档 but not archived -->
+
+<!-- Window-target (显示窗口的设定),强制页面在当前窗口以独立页面显示。这个属性是用来防止别人在框架里调用你的页面。 -->
+<meta http-equiv="Widow-target" content="_top" />
+  <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>

@@ -26,6 +26,7 @@ var A = {
 
 var B = {
   name: '李四'
+  A.describe.call(B)
 };
 
 B.describe = A.describe;
@@ -406,10 +407,13 @@ var counter = {
   count: 0,
   inc: function () {
     this.count++;
+    console.log(this.count)
   }
 };
 
 counter.count // 0
+counter.inc()
+counter.inc()
 counter.inc()
 counter.count // 1
 

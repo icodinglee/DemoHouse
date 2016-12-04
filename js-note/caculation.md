@@ -18,6 +18,8 @@
 
 // 等同于
 String([1, 2]) + String([3])
+[]
+
 // '1,2' + '3'
 ---
 1 - '2' // -1
@@ -190,7 +192,6 @@ new Date() === new Date() // false
 // -13
 ```
 ### 将rgb转换为二进制
-
 ```
 var color = {r: 186, g: 218, b: 85};
 
@@ -200,6 +201,10 @@ var rgb2hex = function(r, g, b) {
   return '#' + ((1 << 24) + (r << 16) + (g << 8) + b)
     .toString(16)
     .substr(1);
+}
+
+var rgb2hex = function(r, g, b) {
+return ( "#"+r.toString(16)+g.toString(16)+b.toString(16))
 }
 
 rgb2hex(color.r,color.g,color.b)

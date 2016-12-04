@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  function f1(){
+    var a=1;
+    var b=3;
+    f2=function(){
+      console.log(a)
+      a +=1
+    }
+    function f3(){
+      console.log(a)
+    }
+    return f3
+  }
+  var f=f1();
+
+  f();
+  f2();
+  f()
+
+  function fn(){
+    var c=11
+  }
+  fn()
+  // console.log(b)
+  // console.log(c)
+
+  // --------------------
+
+  var db = (function() {
+// 创建一个隐藏的object, 这个object持有一些数据
+// 从外部是不能访问这个object的
+var data = {};
+// 创建一个函数, 这个函数提供一些访问data的数据的方法
+return function(key, val) {
+    if (val === undefined) { return data[key] } // get
+    else { return data[key] = val } // set
+    }
+// 我们可以调用这个匿名方法
+// 返回这个内部函数，它是一个闭包
+})();
+
+db('x'); // 返回 undefined
+db('x', 1); // 设置data['x']为1
+db('x'); // 返回 1
+// 我们不可能访问data这个object本身
+// 但是我们可以设置它的成员
+
+// ----继承--
+var temp=1;
+(function(){
+  var temp=3;
+  console.log(temp)
+})()
+console.log(temp)
+var A = {
+  name: '张三',
+  describe: function () {
+    return '姓名：'+ this.name;
+  }
+};
+var B = {
+  name: '李四'
+};
+B.describe = A.describe;
+console.log(B.describe())
+
+
+
+
+function Animal(){
+  this.name="animal";
+  this.showName=function(){
+    alert(this.name)
+  }
+}
+function Cat(){
+   this.name="cat";
+}
+var animal = new Animal();
+var cat = new Cat();
+animal.showName(); //结果为animal
+animal.showName.call(cat); //原本cat没有showName方法，但是通过call方法将animal的showName方法应用到cat上,因此结果为cat
+
+
+
+
+ var A=function(name){
+   this.name=name;
+ }
+ A.prototype={
+   sayname:function(){
+     alert(this.name)
+   }
+ }
+
+ var B=function(age){
+   this.age=age;
+ }
+ B.prototype={
+   sayage:function(){
+     alert(this.age)
+   }
+ }
+ function C(name,age){
+    B.prototype.sayname=A.prototype.sayname
+    A.call(this,name)
+    B.call(this,age)
+ }
+ C.prototype= new B();
+ var c=new C("peter",12)
+ console.log(c)
+ c.sayname();
+ c.sayage()
+
+
+// -------------
+function ClassA(sColor){
+    this.color = sColor;
+}
+ClassA.prototype.sayColor = function(){
+    console.log(this.color);
+}
+function ClassB(sColor, sName){
+    ClassA.call(this, sColor);
+    this.Name = sName;
+}
+ClassB.prototype = new ClassA();
+ClassB.prototype.sayName = function(){
+    console.log("name is " + this.Name);
+}
+var ca = new ClassA("red");
+ca.sayColor();
+var cb = new ClassB("blue","george");
+cb.sayColor();
+cb.sayName();
+  </script>
+</body>
+</html>

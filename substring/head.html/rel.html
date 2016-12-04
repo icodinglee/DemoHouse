@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- HTML5属性sizes ，用于指定网页图标高宽（格式： 高x宽 或默认值 any ），需要同时配置 rel="icons" ， -->
+  <link type="images/png" href="https://www.jd.com/favicon.ico" rel="icons" sizes="16x16"/>
+  <!-- 仅Chrome在disabled为true时，不加载样式文件。其他浏览器均依然继续加载文件资源 -->
+  <link id="test" type="text/css" rel="stylesheet" href="./test.css" onload="this.disabled=true;"/>
+  <!-- 定义网站收藏夹图标 -->
+  <link rel="icon" href="https://www.jd.com/favicon.ico" type="image/x-icon">
+  <!-- 定义苹果桌面上的网站图标 -->
+  <link rel="apple-touch-icon" href="http://paranimage.com/wp-content/themes/v5/images/apple-touch-icon.png" />
+  <title>Document</title>
+</head>
+<body>
+  <h1>hello world</h1>
+  <script  charset="utf-8">
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = './test.css';
+  console.log(link.disabled); // false
+  link.disabled = true;
+  console.log(link.disabled); // false
+  // 加入DOM树，还未加入渲染树
+  document.body.appendChild(link);
+  link.disabled = true;
+  setTimeout(function(){
+    link.disabled = true;
+    console.log(link.disabled)
+  }, 0);
+  </script>
+</body>
+</html>

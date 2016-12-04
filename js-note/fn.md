@@ -19,7 +19,7 @@ function foo(x) {
 ```
 ###  函数本身的作用域
 - 函数本身也是一个值，也有自己的作用域。它的作用域与变量一样，就是其声明时所在的作用域，与其运行时所在的作用域无关
-
+- 闭包可以用在许多地方。它的最大用处有两个，一个是前面提到的可以读取函数内部的变量，另一个就是让这些变量的值始终保持在内存中。
 ```
 var a = 1;
 var x = function () {
@@ -39,6 +39,7 @@ f() // 1
 function foo() {
   var x = 1;
   function bar() {
+    x++;
     console.log(x);
   }
   return bar;
@@ -46,7 +47,10 @@ function foo() {
 
 var x = 2;
 var f = foo();
-f() // 1
+f()
+f()
+f()
+console.log(x)
 ```
 
 ### 参数

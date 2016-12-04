@@ -9,7 +9,8 @@
 <body>
   <script type="text/javascript">
 
-  var str="password=qwe123qwe;userName=peter66"
+  var str="password=qwe123qwe;userName=peter66";
+  str.split(";")[1].substr(9)
   //先将userName=peter66部分分离出来
   var RegExp=/userName=[\u4E00-\u9FA5A-Za-z0-9_]+/g
   var trans=RegExp.exec(str)
@@ -44,6 +45,7 @@
     "phone":"555 1234567"
  }
   console.log(typeof JSONObject)
+  var str="password=qwe123qwe;userName=peter66"
   var myarr=str.split(';')
   console.log(myarr)
   let wantarr=new Array()

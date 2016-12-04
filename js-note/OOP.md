@@ -17,7 +17,6 @@ var Vehicle = function () {
 ####　基本用法
 - 忘了使用new命令：这种情况下，构造函数就变成了普通函数，并不会生成实例对象，this这时代表全局对象
 - 为了保证构造函数必须与new命令一起使用，一个解决办法是，在构造函数内部使用严格模式，即第一行加上use strict。
-
 ```
 function Fubar(foo, bar){
   'use strict';
