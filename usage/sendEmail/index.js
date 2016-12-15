@@ -11,16 +11,21 @@ var transporter = nodemailer.createTransport({
 
 var mailOptions = {
     from: 'Lihk11844@126.com', // sender address
-    to: '1184416980@qq.com', // list of receivers
+    to: '1184416980@qq.com,Lihk11844@126.com', // list of receivers
     subject: 'Hello ✔', // Subject line
     text: 'Hello world,Love YOU ✔', // plaintext body
-    html: '<b>Hello world 666 ✔</b>' // html body
+    html: '<b>I Love You ✔</b>' // html body
 };
 
-transporter.sendMail(mailOptions, function(error, info){
-    if(error){
-        console.log(error);
-    }else{
-        console.log('Message sent: ' + info.response);
-    }
-});
+function sendMail() {
+  transporter.sendMail(mailOptions, function(error, info){
+      if(error){
+          console.log(error);
+      }else{
+          console.log('Message sent: ' + info.response);
+      }
+  });
+}
+
+
+sendMail()
