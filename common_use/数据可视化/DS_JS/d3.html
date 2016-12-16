@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+</head>
+<body>
+  <p>Apple</p>
+  <p class="fruit">Pear</p>
+  <p class="fruitss">Banana</p>
+<script>
+//  datum()：绑定一个数据到选择集上
+//  data()：绑定一个数组到选择集上，数组的各项值分别与选择集的各元素绑定
+// d3.select()：是选择所有指定元素的第一个
+// d3.selectAll()：是选择指定元素的全部
+  var str = "China";
+  var body = d3.select("body");
+  var p = body.selectAll("p");
+  p.datum(str).text(function(d, i){
+      return "第 "+ i + " 个元素绑定的数据是 " + d;
+  });
+
+  var dataset = ["I like dog","I like cat","I like snake"];
+  p.data(dataset).text(function(d, i){
+      return d;
+  });
+
+  var p = body.select("p");
+  p.style("color","red");
+  var p2 = body.select(".fruit");
+  p2.style("color","green");
+
+// append()：在选择集末尾插入元素
+// insert()：在选择集前面插入元素
+//remove();删除元素
+  body.append("p").text("append p element");
+  body.insert("p",".fruit").text("insert p element");
+  body.select(".fruitss").remove()
+
+</script>
+</body>
+</html>

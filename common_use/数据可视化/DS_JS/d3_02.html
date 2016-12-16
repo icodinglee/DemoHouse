@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+</head>
+<body>
+  <script charset="utf-8">
+  // -----线性比例尺-----
+  var dataset = [1.2, 2.3, 0.9, 1.5, 3.3];
+  var min = d3.min(dataset);
+  var max = d3.max(dataset);
+
+  var linear = d3.scale.linear()
+          .domain([min, max]) //定义域
+          .range([0, 300]); //值域,将 dataset 中最小的值，映射成 0；将最大的值，映射成 300
+
+  linear(0.9);    //返回 0
+  linear(2.3);    //返回 175
+  linear(3.3);    //返回 300
+
+  //-----序数比例尺-------
+  var index = [0, 1, 2, 3, 4];
+  var color = ["red", "blue", "green", "yellow", "black"];
+
+  var ordinal = d3.scale.ordinal()
+        .domain(index)
+        .range(color);
+
+    ordinal(0); //返回 red
+    ordinal(2); //返回 green
+    ordinal(4); //返回 black
+
+  // 给柱形图添加比例尺
+var rectHeight = 25;   //每个矩形所占的像素高度(包括空白)
+var datasets = [ 2.5 , 2.1 , 1.7 , 1.3 , 0.9 ];
+var svg = d3.select("body")     //选择文档中的body元素
+  .append("svg")          //添加一个svg元素
+
+
+svg.selectAll("rect")
+    .data(datasets)
+    .enter()
+    .append("rect")
+    .attr("x",20)
+    .attr("y",function(d,i){
+         return i * rectHeight;
+    })
+    .attr("width",function(d){
+         return linear(d);   //在这里用比例尺
+    })
+    .attr("height",rectHeight-2)
+    .attr("fill","steelblue");
+  </script>
+</body>
+</html>

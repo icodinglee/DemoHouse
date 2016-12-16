@@ -14,7 +14,7 @@ var mailOptions = {
     to: '1184416980@qq.com,Lihk11844@126.com', // list of receivers
     subject: 'Hello ✔', // Subject line
     text: 'Hello world,Love YOU ✔', // plaintext body
-    html: '<b>I Love You ✔</b>' // html body
+    html: '<b>I Love You </b>' // html body
 };
 
 function sendMail() {

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.js"></script>
+  <script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+  <script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/highcharts-more.js"></script>
+  <script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/modules/data.js"></script>
+</head>
+<body>
+  <div id="container" style="min-width:400px;height:400px"></div>
+  <script type="text/javascript">
+  $(function () {
+    $.getJSON('http://www.hcharts.cn/datas/jsonp.php?filename=range.json&callback=?', function (data) {
+        console.log(data)
+        $('#container').highcharts({
+            chart: {
+                type: 'arearange',
+                zoomType: 'x'
+            },
+            title: {
+                text: 'Temperature variation by day'
+            },
+            xAxis: {
+                type: 'datetime'
+            },
+            yAxis: {
+                title: {
+                    text: null
+                }
+            },
+            tooltip: {
+                crosshairs: true,
+                shared: true,
+                valueSuffix: '°C'
+            },
+            legend: {
+                enabled: false
+            },
+            series: [{
+                name: 'Temperatures',
+                data: data
+            }]
+        });
+    });
+});
+  </script>
+</body>
+</html>
