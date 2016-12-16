@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>让图表动起来1</title>
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+</head>
+<body>
+  <script type="text/javascript">
+  var width = 400;
+  var height = 400;
+  //在 body 里添加一个 SVG 画布
+  var svg = d3.select("body")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+  var circle1 = svg.append("circle")
+          .attr("cx", 100)
+          .attr("cy", 100)
+          .attr("r", 45)
+          .style("fill","#EC407A");
+
+  //在1秒（1000毫秒）内将圆心坐标由100变为300
+  circle1.transition()
+      .duration(2000)
+      .ease("bounce")
+      .attr("cx", 300)
+      .style("fill","#4A148C")
+      .attr("r", 25);
+  </script>
+</body>
+</html>
