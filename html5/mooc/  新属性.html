@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script defer onload="alert('a')" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.js"></script>
+  <script async onload="alert('b')" src="http://cdn.bootcss.com/d3/4.4.0/d3.min.js"></script>
+  <style>
+  p{color:yellow}
+  </style>
+</head>
+<body>
+  <a media="tv">电视</a>
+  <a media="handheld"　href="#">手持</a>
+  <ol start="50" reversed>
+    <li>apple</li>
+    <li>banas</li>
+  </ol>
+  <menu type="toolbar" lable="menu">
+    <li><input type="checkbox">red<li>
+    <li><input type="checkbox">blue<li>
+  </menu>
+
+  <!-- 行内样式 -->
+  <div>
+    <style type="text/css" scoped>
+        h2{color:red}
+        p{color:blue}
+    </style>
+    <h2>This is a header</h2>
+    <p>This is a footer</p>
+  </div>
+
+<iframe seamless srcdoc="color" sandbox src="https://www.baidu.com/"></iframe>
+　<!-- seamless 无边距 -->
+  <script type="text/javascript"> alert("c") </script>
+</body>
+</html>

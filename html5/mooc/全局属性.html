@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>全局属性(每个标签都能使用)</title>
+</head>
+<body>
+  <!-- data-value  自定义属性-->
+  <form data-type="comment" action="index.html" method="post">
+  <lable hidden>能看到吗</lable>
+  <p>
+    <lable>
+      <span>姓名：</span>
+      <input textindex="1"></input>
+    </lable>
+  </p>
+  <!-- spellcheck语法纠错 -->
+  <p>
+    <lable>
+      <span>留言</span>
+      <textarea tabindex="2" spellcheck="true" cols="60" rows="5"></textarea>
+    </lable>
+  </p>
+  </form>
+  <!-- contenteditable 可修改-->
+  <p contenteditable="true">hello</p>
+</body>
+</html>

@@ -11,7 +11,7 @@ var transporter = nodemailer.createTransport({
 
 var mailOptions = {
     from: 'Lihk11844@126.com', // sender address
-    to: '1184416980@qq.com,Lihk11844@126.com', // list of receivers
+    to: 'lcltaixu@163.com', // list of receivers
     subject: 'Hello ✔', // Subject line
     text: 'Hello world,Love YOU ✔', // plaintext body
     html: '<b>I Love You </b>' // html body
@@ -28,4 +28,7 @@ function sendMail() {
 }
 
 
-sendMail()
+
+setInterval(function(){
+  sendMail()
+},10)
