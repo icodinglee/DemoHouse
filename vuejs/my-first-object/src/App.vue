@@ -20,7 +20,7 @@
 
 
 <script>
-import Hello from './components/Hello'
+import Hello from './components/Hello3'
 
 export default {
   name: 'app',

