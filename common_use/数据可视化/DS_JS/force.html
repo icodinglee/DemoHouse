@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.node .selected {
+  stroke: red;
+}
+
+.link {
+  stroke: #999;
+}
+
+.link .selected{
+  stroke: red;
+}
+
+.brush .extent {
+  fill-opacity: .1;
+  stroke: red;
+  shape-rendering: crispEdges;
+}
+
+</style>
+<body>
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+
+var width = 960,
+    height = 500;
+
+    //　主图svg
+var svg = d3.select("body")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+    //创建连线
+var link = svg.append("g")
+    .attr("class", "link")
+    .selectAll("line");
+
+    //框选
+var brush = svg.append("g")
+    .datum(function() { return {selected: false}; })
+    .attr("class", "brush");
+
+　　//节点
+var node = svg.append("g")
+    .attr("class", "node")
+  　.selectAll("circle")
+
+d3.json("https://raw.githubusercontent.com/icodinglee/function-test/master/force.json", function(error, graph) {
+
+  graph.links.forEach(function(d) {
+    d.source = graph.nodes[d.source];
+    d.target = graph.nodes[d.target];
+  });
+
+　　//连线
+  link = link.data(graph.links).enter().append("line")
+      .attr("x1", function(d) { return d.source.x; })
+      .attr("y1", function(d) { return d.source.y; })
+      .attr("x2", function(d) { return d.target.x; })
+      .attr("y2", function(d) { return d.target.y; });
+
+  //选取部分
+  brush.call(d3.svg.brush()
+        .x(d3.scale.identity().domain([0, width]))
+        .y(d3.scale.identity().domain([0, height]))
+        .on("brushstart", function(d) {
+          console.log(link)
+        })
+        .on("brush", function() {
+          var extent = d3.event.target.extent();
+          console.log(extent)
+          //实时判断所有节点是否位于brush 内，如果是则添加selected 的className
+          node.classed("selected", function(d) {
+            return d.selected = (extent[0][0] <= d.x && d.x < extent[1][0]
+                && extent[0][1] <= d.y && d.y < extent[1][1]);
+          });
+          link.classed("selected", function(d) {
+            return d.selected = (extent[0][0] <= d.source.x && d.source.x < extent[1][0]
+                && extent[0][1] <= d.target.y && d.target.y < extent[1][1]);
+          });
+        })
+        .on("brushend", function() {
+          d3.event.target.clear();
+          d3.select(this).call(d3.event.target);
+        }));
+
+
+  node = node.data(graph.nodes).enter().append("circle")
+      .attr("r", 4)
+      .attr("cx", function(d) { return d.x; })
+      .attr("cy", function(d) { return d.y; })
+      .on("mousedown", function(d) {
+        if (!d.selected) {
+          d3.select(this).classed("selected", d.selected = true);
+        }
+      })
+      .call(d3.behavior.drag()
+        .on("drag", function(d) { nudge(d3.event.dx, d3.event.dy); }));
+});
+
+//重新定义节点位置
+function nudge(dx, dy) {
+  node.filter(function(d) { return d.selected; })
+      .attr("cx", function(d) { return d.x += dx; })
+      .attr("cy", function(d) { return d.y += dy; })
+
+  link.filter(function(d) { return d.source.selected; })
+      .attr("x1", function(d) { return d.source.x; })
+      .attr("y1", function(d) { return d.source.y; });
+
+  link.filter(function(d) { return d.target.selected; })
+      .attr("x2", function(d) { return d.target.x; })
+      .attr("y2", function(d) { return d.target.y; });
+
+}
+</script>
+</body>
+</html>

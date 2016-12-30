@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Javascript版扫雷</title>
+<style>
+  input{ margin:0; padding:0;}
+  input{ outline:none;}
+  #game_box{ width:400px; height:430px; margin:100px auto; border:#333 1px solid; background:#ccc -webkit-repeating-linear-gradient(top,#ccc,#000);background:#ccc -moz-repeating-linear-gradient(top,#ccc,#000);background:#ccc -o-repeating-linear-gradient(top,#ccc,#000);background:#ccc -ms-repeating-linear-gradient(top,#ccc,#000); box-shadow:0 0 50px 10px #333; box-shadow:0 0 50px 10px #333;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#CBCBCB', endColorstr='#000000');
+   }
+  #map{width:400px; height:348px;*height:380px;}
+  #time{ height:18px; line-height:22px; text-align:center;margin:6px 0; margin-top:10px; _margin-top:40px; color:#fff; position:relative;}
+  #time input{ width:40px; height:18px; line-height:18px; text-align:center;}
+  #table_map{ width:336px; height:336px; border:none; border-left:#000 1px solid;border-top:#000 1px solid; margin:32px 32px 0px 32px; background:#D8ECF6; text-align:center; border-collapse: collapse}
+  #table_map td{ width:20px; height:20px; border:none;border-right:#000 1px solid;border-bottom:#000 1px solid; color:#333333; transition:all 0.7s; cursor:pointer;}
+  #table_map td.mask{ border:none;border-right:#000 1px solid;border-bottom:#000 1px solid; background:#333; }
+  #table_map td.over{ border:none;border-right:#000 1px solid;border-bottom:#000 1px solid; }
+  .over_bg{ background:#E1E1E1;}
+  @-webkit-keyframes round{
+    from{ -webkit-transform:rotateX(0);}
+    to{ -webkit-transform:rotateX(360deg);}
+  }
+  @-webkit-keyframes show{
+    from{ -webkit-transform:rotateX(180deg) rotateY(0) scale(0);}
+    to{ -webkit-transform:rotateX(360deg) rotateY(360deg) scale(1);}
+  }
+  @-moz-keyframes round{
+    from{ -moz-transform:rotateX(0);}
+    to{ -moz-transform:rotateX(360deg);}
+  }
+  @-moz-keyframes show{
+    from{ -moz-transform:rotateX(180deg) rotateY(0) scale(0);}
+    to{ -moz-transform:rotateX(360deg) rotateY(360deg) scale(1);}
+  }
+  @-ms-keyframes round{
+    from{ -ms-transform:rotateX(0);}
+    to{ -ms-transform:rotateX(360deg);}
+  }
+  @-ms-keyframes show{
+    from{ -ms-transform:rotateX(180deg) rotateY(0) scale(0);}
+    to{ -ms-transform:rotateX(360deg) rotateY(360deg) scale(1);}
+  }
+  #game_box{-webkit-animation:show 3s;-moz-animation:show 3s;-ms-animation:show 3s;}
+</style>
+</head>
+<body>
+<div id="game_box">
+  <div id="map"></div>
+  <div id="time">时间：<input type="text" value="0" disabled="disabled" />  炸弹：<input type="text" value="50" disabled="disabled" /></div>
+</div>
+<script>
+// 2014年3月 by 王美建 QQ1207526854
+  window.onload=function()
+  {
+    Game.init('game_box','map');
+  };
+  var Game={
+    data : {  //关卡数据
+      mine : 40, col : 16, row : 16
+    },
+    init : function(box_id,mapbox_id){ //初始化
+      this.oBox = document.getElementById(box_id);
+      this.mapBox = document.getElementById(mapbox_id)
+      this.mapBox.innerHTML = this.createMap();
+      this.oMap = this.mapBox.getElementsByTagName('table')[0];
+      this.aTd = this.oMap.getElementsByTagName('td');
+      this.time = document.getElementById('time').getElementsByTagName('input')[0];
+      this.mineNum = document.getElementById('time').getElementsByTagName('input')[1];
+      this.mineNum.value = this.data.mine;
+      this.surplus = [];
+      this.iCount = this.data.col*this.data.row-this.data.mine;
+      this.createMine();
+      this.addVal();
+      this.play();
+    },
+    createMap : function() //生成画布
+    {
+      var html = '';
+      var This = this.data;
+      var i=0,j=0;
+      function createTd()
+      {
+        var tds = '';
+        for(j = 0; j < This.row; j++)
+        {
+          tds += '<td class = "mask" index='+ (This.col*i+j) +'></td>';
+        };
+        return tds;
+      }
+      for(i = 0; i < This.col; i++)
+      {
+        html += '<tr>' + createTd() + '</tr>';
+      };
+      return ('<table id="table_map" cellpadding="0" cellspacing="0" ><tbody>'+html+'</table></tbody>');
+    },
+    createMine : function(){ //生成炸弹
+      var This = this.data;
+      this.indexArr = [];
+      this.mineArr = [];
+      for(var i = 0,j = This.col*This.row; i < j; i++ )
+      {
+        this.indexArr.push(i) ;  //所有单元格的索引
+      };
+      for( var i = 0; i < This.mine; i++ ) //随机取出This.mine个做为炸弹的索引，不重复
+      {
+        var index = Math.round(Math.random()*(this.indexArr.length-1)); //索引
+        this.mineArr.push(this.indexArr.splice(index,1)[0]);
+      };
+      this.mineArr.sort( function(a,b){return a-b;} );
+    },
+    addVal : function() //给有炸弹的td添加自定义属性hasMine值为true
+    {
+      for(var i = 0, j = this.mineArr.length; i < j; i++)
+      {
+        this.aTd[ this.mineArr[i] ].hasMine = true;
+      };
+    },
+    play : function()
+    {//鼠标左右键同时按下  ev.button=3
+      this.timeOnoff = false;
+      var This = this;
+      this.markNum = [];
+      this.oMap.oncontextmenu=function(ev)  //插旗标记
+      {
+        var ev = ev || window.event;
+        var target = ev.srcElement || ev.target;
+        if( target.tagName.toLowerCase() == 'td' && target.className == 'mask' )
+        {
+          !target.mark ? (target.innerHTML = '▲',target.style.color = '#FFEFAD',target.mark = true,This.mineNum.value--,This.markNum.push( target.getAttribute( 'index' ) )) : (target.innerHTML = '',target.style.color = '#333333',target.mark = false,This.mineNum.value++,This.markNum.splice( This.findIndex( This.markNum,target.getAttribute( 'index' ) ),1 ));
+        };
+        return false;
+      };
+      this.oMap.onclick = function(ev)
+      {
+        var ev = ev || window.event;
+        var target = ev.srcElement || ev.target;
+        if(!This.timeOnoff) //开始计时
+        {
+          This.timeOnoff = true;
+          This.timer=setInterval(function(){
+            This.time.style.webkitAnimation = 'round 1s infinite';   //计时器翻转
+            This.time.value++;
+          },1000)
+        };
+        function openTd(aTd,meg,len)
+        {
+          var num = 0;
+          var show = null;
+          var t = Math.ceil( 15*This.data.col*This.data.row/len );  //未打开格子越多，翻开时间间隔越短
+          show = setInterval(function(){
+            aTd[ This.surplus[num] ].className = 'over';
+            aTd[ This.surplus[num] ].style.webkitAnimation = 'round 1s 1';
+            if( aTd[ This.surplus[num] ].hasMine && aTd[ This.surplus[num] ].className == 'over' )
+            {
+              aTd[ This.surplus[num] ].style.color = '#333333';
+              aTd[ This.surplus[num] ].innerHTML = '★';
+            }else{
+              aTd[ This.surplus[num] ].innerHTML = '';
+            };
+            num++;
+            if(num == len)
+            {
+              clearInterval(show);
+              alert(meg);
+            }
+          },t)
+        };
+        function countSur() //统计没打开的格子的索引
+        {
+          var iCheck = 0;
+          This.surplus = [];
+          for( var i = 0,j = This.data.col*This.data.row; i < j; i++ )
+          {
+            if( This.aTd[i].className == 'mask' )
+            {
+              iCheck++;
+              This.surplus.push( i );
+            };
+          };
+          return iCheck;
+        };
+        if( target.tagName.toLowerCase() == 'td' && target.className == 'mask' && !target.hasMine )//没踩到雷
+        {
+          This.count( parseInt(target.getAttribute('index')) ); //递归
+          target.style.webkitAnimation = 'round 1s 1';
+          if( This.iCount <= 10 ) //通关检测
+          {
+            //console.log( 'iCheck='+iCheck+'iCount='+This.iCount )
+            if( countSur() == This.data.mine ) //剩下格子数等于炸弹数而又没踩到炸弹，可不就是过关了
+            {
+              clearInterval( This.timer );
+              This.time.style.webkitAnimation = '';   //停止计时器翻转
+              openTd( This.aTd,'不错小伙子，过关了！用时：'+This.time.value+'s',This.surplus.length );
+            };
+          };
+        }else if( target.tagName.toLowerCase() == 'td' && target.className == 'mask' && target.hasMine ){ //踩到雷
+          clearInterval(This.timer);   //停止计时器
+          This.time.style.webkitAnimation = '';   //停止计时器翻转
+          var mineArr = This.mineArr;  //优化：全局变局部
+          var aTd = This.aTd;
+          for( var i = 0,j = mineArr.length; i < j; i++ )
+          {
+            aTd[ mineArr[i] ].style.color = '#333333';
+            aTd[ mineArr[i] ].className = 'over';
+            aTd[ mineArr[i] ].innerHTML = '★';   //显示炸弹标志
+          };
+          target.style.color = 'red';
+          countSur();
+          openTd( aTd,'小朋友，你输了~',This.surplus.length );
+        };
+      };
+    },
+    findIndex : function(arr,ele) //找到数组某个元素在数组中的位置
+    {
+      for(var i=0,j=arr.length;i<j;i++)
+      {
+        if(ele === arr[i])
+        {
+          return i;
+        };
+      };
+      return -1;
+    },
+    count : function(iNow) //统计事件源周围炸弹
+    {
+      var arr = []; //事件源周围的格子索引
+      var iNum = 0; //事件源周围炸弹个数
+      var len = this.data.col;
+      if( iNow % len == 0 )  //点击最左边的格子时
+      {
+        arr = [iNow+1,iNow-len,iNow-len+1,iNow+len,iNow+len+1];
+      }else if( iNow == ( Math.floor( iNow/len ) + 1 ) *len -1 ){ //点击靠右边的格子时
+        arr = [iNow-1,iNow-len,iNow-len-1,iNow+len,iNow+len-1];
+      }else{ //点击不靠边的格子时
+        arr = [iNow-1,iNow+1,iNow-len,iNow-len+1,iNow-len-1,iNow+len,iNow+len-1,iNow+len+1];
+      };
+      for( var i = 0; i < arr.length; i++ ) //统计周围炸弹
+      {
+        if( this.aTd[ arr[ i ] ] && this.aTd[ arr[ i ] ].hasMine )
+        {
+          iNum++;
+        }
+      };
+      if( iNum == 0 )  //当前点击格子周围没有炸弹则递归
+      {
+        this.aTd[iNow].className = '';
+        this.aTd[ iNow ].innerHTML == '▲' ? this.aTd[ iNow ].innerHTML = '' : '';
+        for( var i = 0,j = arr.length; i < j; i++ )
+        {
+          if( this.aTd[ arr[ i ] ] && this.aTd[ arr[i] ].className == 'mask')
+          {
+            this.aTd[ arr[i] ].className = '';
+            this.aTd[ arr[i] ].innerHTML == '▲' ? this.aTd[ arr[i] ].innerHTML = '' : '';
+            this.iCount--;
+            this.count( arr[i] );
+          };
+        };
+      }else{ //当前点击格子周围有炸弹则显示炸弹个数
+        this.aTd[iNow].innerHTML = iNum;
+        this.aTd[iNow].style.color = '#333333';
+        this.aTd[iNow].style.webkitAnimation = 'round 1s 1';
+        this.aTd[iNow].className == 'mask' ? (this.aTd[iNow].className = '',this.iCount--) : '';
+      };
+    }
+  };
+</script>
+</body>
+</html>

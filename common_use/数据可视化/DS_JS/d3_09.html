@@ -7,6 +7,27 @@
   <title>力导向图</title>
   <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 </head>
+<style>
+.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.node .selected {
+  stroke: red;
+}
+
+.link {
+  stroke: #999;
+}
+
+.brush .extent {
+  fill-opacity: .1;
+  stroke: yellow;
+  shape-rendering: crispEdges;
+}
+
+</style>
 <body>
 <script>
   var width = 400;
@@ -16,6 +37,7 @@
       .append("svg")
       .attr("width", width)
       .attr("height", height);
+      
   var nodes = [ { name: "桂林" }, { name: "广州" },
               { name: "厦门" }, { name: "杭州" },
               { name: "上海" }, { name: "青岛" },
