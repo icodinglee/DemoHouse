@@ -1,0 +1,29 @@
+@import './variable.scss';
+
+.sidebar {
+  background-color: #32394b;
+  .title {
+    color: #fff;
+    font-family: $global-font-family;
+    line-height: 5rem;
+    font-size: 1.6rem;
+    padding-left: 3rem;
+    margin-bottom: 0;
+  }
+  .list {
+    background-color: transparent;
+    margin-top: 0;
+    padding-left: 3rem;
+    li:active {
+      a {
+        color: $base-color;
+      }
+    }
+    a {
+      font-family: $global-font-family;
+      color: #fff;
+      font-size: 1.2rem;
+      line-height: 3rem;
+    }
+  }
+}

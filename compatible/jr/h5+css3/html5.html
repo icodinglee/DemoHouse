@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<!--[if lt ie 9]>
+		<script type="text/javascript" src="html5.js"></script>
+		<script type="text/javascript" src="respond.min.js"></script>
+	<![endif]-->
+	<link rel="stylesheet" href="reset.css">
+	<style>
+		header,footer{background-color: #ccc;display: block;}
+		aside{width: 100px;height: 400px;border:1px solid red;box-shadow: 10px 10px 5px #888888;border-radius: 10px;background:linear-gradient(red,blue,yellow) }
+		.no-cssgradients aside{background-color: red;}
+		@media screen and (max-width: 2000px) { /*当屏幕尺寸小于600px时，应用下面的CSS样式*/
+		  aside {
+		    background: #ccc;
+		  }
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<nav>
+			<ul>
+				<li><a href="#">home</a></li>
+				<li><a href="#">home</a></li>
+				<li><a href="#">home</a></li>
+				<li><a href="#">home</a></li>
+				<li><a href="#">home</a></li>
+			</ul>
+		</nav>
+	</header>
+	<section class="main">
+		<section class="content">this is a content</section>
+		<aside>this is part aside</aside>
+	</section>
+	<footer>footer</footer>
+	<script type="text/javascript" src="modernizr.js"></script>
+</body>
+</html>

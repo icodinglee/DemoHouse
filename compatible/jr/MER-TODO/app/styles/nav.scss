@@ -1,0 +1,24 @@
+@import './variable.scss';
+.navbar
+{
+  background-color: transparent;
+  color: #fff;
+  .navbar-title
+  {
+    font-family: monospace;
+    font-size: 1.6rem;
+    letter-spacing: .1rem;
+  }
+}
+.navbar:after
+{
+  border: none;
+}
+.nav-wrap {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.clear-completed:active {
+  color: #8fd4de;
+}

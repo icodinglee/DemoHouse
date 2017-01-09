@@ -1,0 +1,13 @@
+
+1，拷贝DD_belatedPNG.js文件到js目录下。
+
+2，将以下代码放到HTML文件的<head>区域，更改fix里面的需修复PNG的CSS选择器。
+
+<!--[if IE 6]>
+<script src="js/DD_belatedPNG.js"></script>
+<script>
+  DD_belatedPNG.fix('#navtop, #navtop ul');
+</script>
+<![endif]-->
+
+备注：#navtop, #navtop ul是包含png图片的选择器,应用的时候要换成自己的选择器

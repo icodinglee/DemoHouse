@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>My Web Map</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://mapzen.com/js/mapzen.css">
+    <script src="https://mapzen.com/js/mapzen.min.js"></script>
+
+    <style>
+      #map {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+      }
+    html,body{margin: 0; padding: 0;}
+  </style>
+
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+    var latlng=L.latLng(39.9, 116.4)
+      var map = L.Mapzen.map('map',{
+        center: latlng,
+        zoom: 10,
+        dragging:true
+      });
+      // map.setView([51.505, -0.09], 13);
+
+  //event
+    map.on("dbclick",function(e){
+      console.log(e)
+    })
+    map.on("movestart",function(e){
+      console.log(e)
+    })
+
+    map.on("dragging",function(e){
+      console.log("12312")
+    })
+
+    //maker
+    var marker1 = L.marker([39.9, 116.4]).addTo(map).on("click",function(e){
+      console.log(e)
+    });
+    var marker2= L.marker([39.8, 116.2]).addTo(map);
+    var marker3= L.marker([40, 118]).addTo(map);
+
+    //popup
+    var popup = L.popup()
+    .setLatLng([39.8, 116.6])
+    .setContent('<p>Hello world!<br />This is a nice popup.</p>')
+    .openOn(map);
+
+    //point中心点偏移
+    var point =L.point(0,0)
+    // map.panBy([0, 0]);
+
+    //方形区域
+    //define rectangle geographical bounds
+    var bounds = [[39.9, 116.4], [40, 117]];
+    // create an orange rectangle
+    L.rectangle(bounds, {color: "#ff7800", weight: 1,fillColor:"teal"}).addTo(map);
+    // zoom the map to the rectangle bounds
+    map.fitBounds(bounds);
+
+    //连线
+    //create a red polyline from an array of LatLng points
+    var polyline = L.polyline([[39.9, 116.4],[40, 117]], {color: 'red'}).addTo(map);
+    // zoom the map to the polyline
+    map.fitBounds(polyline.getBounds());
+
+    //圆形点
+    L.circle([39.95, 116.8], 300).addTo(map).on("click",function(e){
+      console.log(e)
+    });
+
+    //layerGroup
+     L.layerGroup([marker1, marker2])
+    .addLayer(polyline)
+    .addTo(map);
+
+    //将所有同类型的点线数据方法绑定在一起
+    L.featureGroup([marker1, marker2, polyline])
+    .bindPopup('Hello world!')
+    .on('click', function() { alert('Clicked on a group!'); })
+    .addTo(map);
+    
+    </script>
+  </body>
+</html>

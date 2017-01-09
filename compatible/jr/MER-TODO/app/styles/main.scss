@@ -1,0 +1,21 @@
+body
+{
+    background: rgba(94,181,192,1);
+    background:    -moz-linear-gradient(top, rgba(94,181,192,1) 0%, rgba(117,196,206,1) 53%, rgba(148,215,225,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(94,181,192,1)), color-stop(53%, rgba(117,196,206,1)), color-stop(100%, rgba(148,215,225,1)));
+    background: -webkit-linear-gradient(top, rgba(94,181,192,1) 0%, rgba(117,196,206,1) 53%, rgba(148,215,225,1) 100%);
+    background:      -o-linear-gradient(top, rgba(94,181,192,1) 0%, rgba(117,196,206,1) 53%, rgba(148,215,225,1) 100%);
+    background:     -ms-linear-gradient(top, rgba(94,181,192,1) 0%, rgba(117,196,206,1) 53%, rgba(148,215,225,1) 100%);
+    background:         linear-gradient(to bottom, rgba(94,181,192,1) 0%, rgba(117,196,206,1) 53%, rgba(148,215,225,1) 100%);
+
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5eb5c0', endColorstr='#94d7e1', GradientType=0 );
+}
+#root > .root {
+  position: relative;
+  padding-top: 2rem;
+  padding-bottom: 6rem;
+  overflow: auto;
+  background-image: url('https://github.com/MertensMing/source/blob/master/React-Mobile-Todo/todo%20(1).png?raw=true');
+  background-position: center;
+  background-repeat: no-repeat;
+}

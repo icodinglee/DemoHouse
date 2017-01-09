@@ -1,0 +1,24 @@
+http://bl.ocks.org/cpbotha/5073718
+http://bl.ocks.org/mbostock/1305337   1250
+http://bl.ocks.org/diethardsteiner/3287802
+http://enja.org/2011/09/15/simple-d3-js-pie-chart-webcast/
+http://bl.ocks.org/mbostock/4341574
+http://mbostock.github.io/d3/talk/20111116/airports.html
+http://bl.ocks.org/mbostock/4408297
+https://vimeo.com/
+http://bl.ocks.org/mbostock/1846692
+http://bl.ocks.org/mbostock/2647922
+http://bl.ocks.org/ZJONSSON/3918369
+
+
+// https://priceonomics.com/hotels/
+// http://bl.ocks.org/mbostock/2206590
+// http://bl.ocks.org/diegovalle/5166482
+// http://enjalot.github.io/dot-enter/
+// http://bl.ocks.org/mbostock/4566102
+// http://bl.ocks.org/ZJONSSON/1706523
+// http://bl.ocks.org/mbostock/1353700
+// http://bl.ocks.org/dwtkns/4686432
+// http://bl.ocks.org/mbostock/2962761
+// http://bl.ocks.org/mbostock/6738360
+// https://www.jasondavies.com/maps/bounds/

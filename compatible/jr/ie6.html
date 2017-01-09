@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style media="screen">
+  .box1{
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+    background-color: red
+  }
+  .box2{
+    width:1000px;
+    border:1px solid #666;
+    height: 10px;
+    font-size: 0px;
+    overflow: hidden
+  }
+  .box2 div{
+    float: right;
+    border:1px solid red;
+    width:300px;
+    margin-left: 15px;
+    margin-right: 15px;
+    height: 10px
+  }
+  .first-child {
+      display: inline;
+  }
+  #wrap{
+    background-color: #666;
+    position: relative;
+    margin-left: 40px;
+    width: 80px;
+    border: 1px solid pink;
+  }
+  .BOXX1{
+    position: absolute;
+    left:-20px;
+    top:0;
+    width: 20px;
+    text-align: center;
+    line-height: 20px;
+    background-color: red
+  }
+  .BOXX2 , .BOXX3{
+    float: left;
+    width: 40px;
+    background-color: blue;
+    line-height: 40px
+  }
+  .clear{
+    clear:both
+  }
+
+  .clearfix:before,.clearfix:after{
+    display: block;
+    content: " ";
+  }
+  .clearfix:after{clear:both}
+  .clearfix{zoom:1}
+</style>
+<!--[if lt IE 8]> <link rel="stylesheet" href="ie.css"> <![endif]-->
+<body>
+  <div class="box1">box1</div>
+  <div class="box2">
+    <div class="first-child">1</div>
+    <div>2</div>
+    <div>3</div>
+  </div>
+
+  <div id="wrap" class="clearfix">
+    <div class="BOXX1">q</div>
+    <div class="clear"><div>
+    <div class="BOXX2">6666</div>
+    <div class="BOXX3">6969</div>
+  </div>
+
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.js"></script>
+  <script>
+  </script>
+</body>
+</html>
