@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>My Web Map</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://mapzen.com/js/mapzen.css">
+    <script src="https://mapzen.com/js/mapzen.min.js"></script>
+    <!-- <script src="./map.js"></script> -->
+    <style>
+    *{margin: 0;padding: 0}
+      #map {
+        height: 500px;
+        width: 500px;
+        margin:0 auto;
+        border: 1px solid red;
+        position: absolute;
+      }
+      #map:hover{
+        cursor: cell;
+      }
+      /*#container {
+        border: 1px solid red;
+        width: 500px;
+        margin: 0 auto;
+      }*/
+      .tempDiv{
+        border:1px dashed blue;
+        background:#5a72f8;
+        position:absolute;
+        width:0;
+        height:0;
+        filter:alpha(opacity:10);
+        opacity:0.1;
+        z-index: 2000
+      }
+      .leaflet-bottom{
+        display: none
+      }
+  </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="map"></div>
+    </div>
+    <script>
+      var latlng=L.latLng(39.9, 116.4)
+        var map = L.Mapzen.map('map',{
+          center: latlng,
+          zoom: 5,
+          dragging:false
+        });
+    //event_获取初始点和终点经纬度坐标
+        //捕获误操作点击事件
+        map.on("click",function(e){
+          latlng_Arr=[];
+          isMapSelect=[false,false];
+        })
+        var latlng_Arr=[];
+        var isMapSelect=[false,false];
+        map.on("mousedown",function(e){
+          //鼠标按下时再次初始化参数
+          latlng_Arr=[];
+          isMapSelect=[false,false];
+          isMapSelect[0]=true;
+          latlng_Arr.push([e.latlng.lat,e.latlng.lng])
+            map.on("mouseup",function(ev){
+              isMapSelect[1]=true;
+              latlng_Arr.push([ev.latlng.lat,ev.latlng.lng]);
+           })
+        })
+        //插入圆形点
+        L.circle([39.95, 116.8], 300).addTo(map).on("click",function(e){
+          console.log(e)
+        });
+
+        //添加框选事件
+        document.onmousedown = function(e){
+          if(!isMapSelect[0]){return false}
+         var posx = e.clientX;
+         var posy = e.clientY;
+         var div = document.createElement("div");
+         div.className = "tempDiv";
+         div.style.left = e.clientX+"px";
+         div.style.top = e.clientY+"px";
+         document.getElementsByClassName("leaflet-control-container")[0].appendChild(div)
+         document.onmousemove = function(ev){
+          div.style.left = Math.min(ev.clientX, posx) + "px";
+          div.style.top = Math.min(ev.clientY, posy) + "px";
+          div.style.width = Math.abs(posx - ev.clientX)+"px";
+          div.style.height = Math.abs(posy - ev.clientY)+"px";
+          document.onmouseup = function(){
+          div.parentNode.removeChild(div);
+           document.onmousemove = null;
+           document.onmouseup = null;
+           if(isMapSelect[0]&&isMapSelect[1]){
+             latlng_Arr.length=2;
+             console.log(latlng_Arr)
+           }
+           latlng_Arr=[];
+           isMapSelect=[false,false];
+          }
+         }
+        }
+    </script>
+  </body>
+</html>
